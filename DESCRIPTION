@@ -1,11 +1,22 @@
 Package: ggvast
 Type: Package
-Title: What the Package Does (Title Case)
+Title: ggvast can change the axis names, plot COG on map, and transform UTM to latitude/longitude using the VAST outputs
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Authors@R: person("Yuki", "Kanamori", email = "kana.yuki@fra.affrc.go.jp", role = c("aut", "cre"))
+Maintainer: Yuki Kamamori <kana.yuki@fra.affrc.go.jp>
+Description: ggvast is a R package for visualisations of the VAST outputs
 License: What license is it under?
 Encoding: UTF-8
 LazyData: true
+Depends: R (>= 3.6.1)
+Imports: 
+    ggplot2,
+    plyr,
+    dplyr,
+    tidyr,
+    stringr,
+    maps,
+    mapdata,
+    VAST,
+    FishStatsUtils,
+    rgdal
