@@ -5,10 +5,10 @@
 *
 
 ## Functions
-* `map_cog()`
+* `map_cog()`  
 ![map_cog](https://github.com/Yuki-Kanamori/ggvast/blob/master/figures/meps_fig4.pdf)
 * `get_dens()`
-* `map_dens()`
+* `map_dens()`  
 ![map_dens](https://github.com/Yuki-Kanamori/ggvast/blob/master/figures/stock_asessment_fig33.pdf)
 
 ## Example figures
