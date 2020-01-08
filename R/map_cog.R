@@ -1,5 +1,6 @@
 #' Plot the COG on map from VAST output
 #'
+#' plot the COG om map using ggplot2. category names, axis names, font size and plot shape can change.
 #' @param category_name names of each category. set 1 when single-species model
 #' @param zone no. of UTM which was estimated when "Extrapolation_List" was made
 #' @param labs setting of figure. colour is legend
@@ -9,7 +10,6 @@
 #' @param DateFile necessary to make a COG_Table using VAST
 #' @param package Spatial DeltaGLMM or FishStatsUtils
 #' @param fileEncoding encoding
-#'
 #' @importFrom SpatialDeltaGLMM Plot_range_shifts
 #' @importFrom FishStatsUtils plot_range_index
 #' @importFrom rgdal project
