@@ -1,4 +1,4 @@
-#' Plot the COG on map from VAST outputs
+#' Plot the COG on map from VAST output
 #'
 #' @param category_name names of each category. set 1 when single-species model
 #' @param zone no. of UTM which was estimated when "Extrapolation_List" was made
@@ -8,10 +8,15 @@
 #' @param size size of shape
 #' @param DateFile necessary to make a COG_Table using VAST
 #' @param package Spatial DeltaGLMM or FishStatsUtils
-#' @param fileEncoding endoding
+#' @param fileEncoding encoding
 #'
-#' @examples
-#' map_cog(category_name, zone, labs, ncol, shape, size, DateFile, package, fileEncoding)
+#' @importFrom SpatialDeltaGLMM Plot_range_shifts
+#' @importFrom FishStatsUtils plot_range_index
+#' @importFrom rgdal project
+#' @importFrom maps
+#' @importFrom mapdata
+#' @importFrom ggplot2
+#'
 #' @export
 
 
@@ -70,7 +75,6 @@ map_cog = function(category_name, zone, labs, ncol, shape, size, DateFile, packa
   colnames(lonlat) = c("lon", "lat")
   lonlat = cbind(lonlat, lat[, c("Year", "Category")])
   lonlat$Category = factor(lonlat$Category, levels = category_name)
-  levels(lonlat$Category)
 
   #make COG maps
   map = ggplot() + coord_fixed() + xlab("Longitude") + ylab("Latitude")

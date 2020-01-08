@@ -5,7 +5,7 @@
 \title{Plot the COG on map from VAST outputs}
 \usage{
 map_cog(
-  pcategory_name,
+  category_name,
   zone,
   labs,
   ncol,
@@ -17,6 +17,8 @@ map_cog(
 )
 }
 \arguments{
+\item{category_name}{names of each category. set 1 when single-species model}
+
 \item{zone}{no. of UTM which was estimated when "Extrapolation_List" was made}
 
 \item{labs}{setting of figure. colour is legend}
@@ -31,13 +33,8 @@ map_cog(
 
 \item{package}{Spatial DeltaGLMM or FishStatsUtils}
 
-\item{fileEncoding}{endoding}
-
-\item{category_name}{names of each category. set 1 when single-species model}
+\item{fileEncoding}{encoding}
 }
 \description{
 Plot the COG on map from VAST outputs
-}
-\examples{
-map_cog(pcategory_name, zone, labs, ncol, shape, size, DateFile, package, fileEncoding)
 }
