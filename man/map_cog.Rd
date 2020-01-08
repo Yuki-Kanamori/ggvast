@@ -36,5 +36,5 @@ map_cog(
 \item{fileEncoding}{encoding}
 }
 \description{
-Plot the COG on map from VAST output
+plot the COG om map using ggplot2. category names, axis names, font size and plot shape can change.
 }
