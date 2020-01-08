@@ -11,7 +11,7 @@
 #' @param fileEncoding endoding
 #'
 #' @examples
-#' cog_map(pcategory_name, zone, labs, ncol. shape, size, DateFile, package, fileEncoding)
+#' map_cog(pcategory_name, zone, labs, ncol. shape, size, DateFile, package, fileEncoding)
 #' @export
 
 

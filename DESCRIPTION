@@ -20,3 +20,4 @@ Imports:
     VAST,
     FishStatsUtils,
     rgdal
+RoxygenNote: 7.0.2
