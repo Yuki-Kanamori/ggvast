@@ -1,7 +1,5 @@
 #' Plot the COG on map from VAST outputs
 #'
-#' \code{check_fit} checks bounds and throws an informative message if any look bad
-#'
 #' @param category_name names of each category. set 1 when single-species model
 #' @param zone no. of UTM which was estimated when "Extrapolation_List" was made
 #' @param labs setting of figure. colour is legend
@@ -18,7 +16,7 @@
 
 
 # make a COG_Table and maps of COG ------------------------------
-cog_map = function(Save, package){
+map_cog = function(Save, package){
   #load Save.RData estimated by VAST
   setwd(dir = dirname)
   load("Save.RData")
