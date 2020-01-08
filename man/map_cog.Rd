@@ -4,13 +4,19 @@
 \alias{map_cog}
 \title{Plot the COG on map from VAST outputs}
 \usage{
-map_cog(Save, package)
+map_cog(
+  pcategory_name,
+  zone,
+  labs,
+  ncol,
+  shape,
+  size,
+  DateFile,
+  package,
+  fileEncoding
+)
 }
 \arguments{
-\item{package}{Spatial DeltaGLMM or FishStatsUtils}
-
-\item{category_name}{names of each category. set 1 when single-species model}
-
 \item{zone}{no. of UTM which was estimated when "Extrapolation_List" was made}
 
 \item{labs}{setting of figure. colour is legend}
@@ -23,11 +29,15 @@ map_cog(Save, package)
 
 \item{DateFile}{necessary to make a COG_Table using VAST}
 
+\item{package}{Spatial DeltaGLMM or FishStatsUtils}
+
 \item{fileEncoding}{endoding}
+
+\item{category_name}{names of each category. set 1 when single-species model}
 }
 \description{
 Plot the COG on map from VAST outputs
 }
 \examples{
-map_cog(pcategory_name, zone, labs, ncol. shape, size, DateFile, package, fileEncoding)
+map_cog(pcategory_name, zone, labs, ncol, shape, size, DateFile, package, fileEncoding)
 }

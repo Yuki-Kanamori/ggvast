@@ -11,12 +11,12 @@
 #' @param fileEncoding endoding
 #'
 #' @examples
-#' map_cog(pcategory_name, zone, labs, ncol, shape, size, DateFile, package, fileEncoding)
+#' map_cog(category_name, zone, labs, ncol, shape, size, DateFile, package, fileEncoding)
 #' @export
 
 
 # make a COG_Table and maps of COG ------------------------------
-map_cog = function(pcategory_name, zone, labs, ncol, shape, size, DateFile, package, fileEncoding){
+map_cog = function(category_name, zone, labs, ncol, shape, size, DateFile, package, fileEncoding){
   #load Save.RData estimated by VAST
   setwd(dir = dirname)
   load("Save.RData")
