@@ -2,7 +2,7 @@
 % Please edit documentation in R/map_cog.R
 \name{map_cog}
 \alias{map_cog}
-\title{Plot the COG on map from VAST outputs}
+\title{Plot the COG on map from VAST output}
 \usage{
 map_cog(
   category_name,
@@ -36,5 +36,5 @@ map_cog(
 \item{fileEncoding}{encoding}
 }
 \description{
-Plot the COG on map from VAST outputs
+Plot the COG on map from VAST output
 }

@@ -13,9 +13,9 @@
 #' @importFrom SpatialDeltaGLMM Plot_range_shifts
 #' @importFrom FishStatsUtils plot_range_index
 #' @importFrom rgdal project
-#' @importFrom maps
-#' @importFrom mapdata
-#' @importFrom ggplot2
+#' @import maps
+#' @import mapdata
+#' @import ggplot2
 #'
 #' @export
 
