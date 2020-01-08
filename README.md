@@ -4,7 +4,7 @@
 ## Installation instruction
 *
 
-## Usage
+## Functions
 * `map_cog()`
 * `get_density()`
 * `map_density()`
