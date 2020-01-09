@@ -4,7 +4,7 @@ category_name = c("January","February", "March", "April", "May", "June", "July",
 setwd(dir = vast_output_dirname)
 load("Save.RData")
 DG = read.csv("Data_Geostat_sar.csv")
-df_dens = get_dens()
+df_dens = get_dens(category_name = category_name)
 
 get_dens = function(category_name){
   n_c = Save$TmbData$n_c #category (month)
@@ -45,5 +45,5 @@ get_dens = function(category_name){
   df = df %>% dplyr::rename(lat = Lat, lon = Lon)
 
   tag2 = data_frame(category_name = category_name, category = rep(1:length(category_name)))
-  df = merge(df, tag2, by = "category")
+  df = merge(df, tag2, by = "category") %>% arrange(knot_i, year, category, lat, lon)
 }

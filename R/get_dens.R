@@ -48,5 +48,5 @@ get_dens = function(category_name){
   df = df %>% dplyr::rename(lat = Lat, lon = Lon)
 
   tag2 = data_frame(category_name = category_name, category = rep(1:length(category_name)))
-  df = merge(df, tag2, by = "category")
+  df = merge(df, tag2, by = "category") %>% arrange(knot_i, year, category, lat, lon)
 }
