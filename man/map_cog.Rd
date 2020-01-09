@@ -4,17 +4,7 @@
 \alias{map_cog}
 \title{Plot the COG on map from VAST output}
 \usage{
-map_cog(
-  category_name,
-  zone,
-  labs,
-  ncol,
-  shape,
-  size,
-  DateFile,
-  package,
-  fileEncoding
-)
+map_cog(category_name, zone, labs, ncol, shape, size, package)
 }
 \arguments{
 \item{category_name}{names of each category. set 1 when single-species model}
@@ -29,11 +19,7 @@ map_cog(
 
 \item{size}{size of shape}
 
-\item{DateFile}{necessary to make a COG_Table using VAST}
-
 \item{package}{Spatial DeltaGLMM or FishStatsUtils}
-
-\item{fileEncoding}{encoding}
 }
 \description{
 plot the COG om map using ggplot2. category names, axis names, font size and plot shape can change.

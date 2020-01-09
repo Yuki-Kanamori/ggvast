@@ -1,7 +1,7 @@
 #' Get the estimated density in each knot
 #'
 #' Get the estimated density in each knot from Save.RData.
-#' @param category_name
+#' @param category_name change numeric category to category name
 #' @importForm magrittr %>%
 #' @importFrom dplyr mutate
 #' @importFrom dplyr rename
