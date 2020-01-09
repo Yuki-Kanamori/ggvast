@@ -71,3 +71,5 @@ map_cog = function(category_name, zone, labs, ncol, shape, size, package){
     jap_map+theme_bw()+th+p+f+c+labs
   }
 }
+
+#' @importFrom rgdal project

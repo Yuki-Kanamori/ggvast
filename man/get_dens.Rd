@@ -6,6 +6,9 @@
 \usage{
 get_dens(category_name)
 }
+\arguments{
+\item{category_name}{change numeric category to category name}
+}
 \description{
 Get the estimated density in each knot from Save.RData.
 }
