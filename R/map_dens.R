@@ -7,7 +7,6 @@
 #' @param ncol number of figures in line side by side. max is no. of "Category"
 #' @param shape shape of COG point
 #' @param size size of shape
-#' @importForm magrittr %>%
 #' @importFrom dplyr filter
 #' @importFrom ggplot2 ggsave
 #' @import maps

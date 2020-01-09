@@ -10,7 +10,6 @@
 #' @param package Spatial DeltaGLMM or FishStatsUtils
 #' @importFrom SpatialDeltaGLMM Plot_range_shifts
 #' @importFrom FishStatsUtils plot_range_index
-#' @importForm magrittr %>%
 #' @importFrom dplyr distinct
 #' @importFrom dplyr select
 #' @import magrittr
