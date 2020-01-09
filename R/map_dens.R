@@ -1,6 +1,6 @@
-#' Plot the COG on map from VAST output
+#' Plot the estimated density on map
 #'
-#' plot the COG om map using ggplot2. category names, axis names, font size and plot shape can change.
+#' plot the estimated density om map by species using ggplot2. scale name, plot shape, and size of plot shape can change.
 #' @param data dataframe made by get_dens function
 #' @param region region of the data.
 #' @param scale_names unit of estimated density
