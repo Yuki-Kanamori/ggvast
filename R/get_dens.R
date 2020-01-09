@@ -2,21 +2,13 @@
 #'
 #' Get the estimated density in each knot from Save.RData.
 #' @param category_name change numeric category to category name
-#' @importForm magrittr %>%
 #' @importFrom dplyr mutate
 #' @importFrom dplyr rename
 #' @importFrom dplyr distinct
 #' @importFrom dplyr select
 #' @importFrom tidyr gather
-#'
 #' @importFrom magrittr %>%
-#' @name %>%
-#' @rdname pipe
-#' @export
-#' @param lhs,rhs specify what lhs and rhs are
-#' @examples
-#' # some examples if you want to highlight the usage in the package
-NULL
+#' @import magrittr
 #' @export
 
 get_dens = function(category_name){
