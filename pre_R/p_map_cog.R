@@ -1,25 +1,7 @@
-#' Plot the COG on map from VAST output
-#'
-#' plot the COG om map using ggplot2. category names, axis names, font size and plot shape can change.
-#' @param category_name names of each category. set 1 when single-species model
-#' @param zone no. of UTM which was estimated when "Extrapolation_List" was made
-#' @param labs setting of figure. colour is legend
-#' @param ncol number of figures in line side by side. max is no. of "Category"
-#' @param shape shape of COG point
-#' @param size size of shape
-#' @param package Spatial DeltaGLMM or FishStatsUtils
-#' @importFrom SpatialDeltaGLMM Plot_range_shifts
-#' @importFrom FishStatsUtils plot_range_index
-#' @importFrom rgdal project
-#' @importForm magrittr %>%
-#' @importFrom dplyr distinct
-#' @importFrom dplyr select
-#' @import maps
-#' @import mapdata
-#' @import ggplot2
-#'
-#' @export
-
+vast_output_dirname = ##
+setwd(dir = vast_output_dirname)
+load("Save.RData")
+DG = read.csv("Data_Geostat_sar.csv")
 
 map_cog = function(category_name, zone, labs, ncol, shape, size, package){
   #make a COG_Table using VAST package

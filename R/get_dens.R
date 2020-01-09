@@ -5,6 +5,8 @@
 #' @importForm magrittr %>%
 #' @importFrom dplyr mutate
 #' @importFrom dplyr rename
+#' @importFrom dplyr distinct
+#' @importFrom dplyr select
 #' @importFrom tidyr gather
 #'
 #' @export

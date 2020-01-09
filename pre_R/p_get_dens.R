@@ -10,7 +10,7 @@ get_dens = function(category_name){
   n_c = Save$TmbData$n_c #category (month)
   n_t = Save$TmbData$n_t #year
   n_x = Save$TmbData$n_x #knot
-  year_list = DG %>% select(Year) %>% distinct(Year, .keep_all = T)
+  year_set = DG %>% select(Year) %>% distinct(Year, .keep_all = T)
   latlon_list = DG %>% distinct(knot_i, Lon, Lat, .keep_all = T) %>% select(Lon, Lat, knot_i)
 
   #estimated density
@@ -37,7 +37,7 @@ get_dens = function(category_name){
 
   est_d = est_d %>% mutate(knot_i = rep(1:n_x, n_c), category = rep(1:n_c, each = n_x))
   est_d = est_d %>% tidyr::gather(key = x_year, value = log_abundance, 1:n_t)
-  tag = data_frame(x_year = paste0("X", rep(1:n_t)), year = rep(min(year_list$Year):max(year_list$Year)))
+  tag = data_frame(x_year = paste0("X", rep(1:n_t)), year = rep(min(year_set$Year):max(year_set$Year)))
   est_d = merge(est_d, tag, by = "x_year")
 
   #add latitude/longitude information
