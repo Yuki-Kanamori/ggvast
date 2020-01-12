@@ -28,7 +28,7 @@
 * ご意見ご要望がある場合にはissueまで
 
 ## 例題
-* [VASTのコード](https://gist.github.com/Yuki-Kanamori/42d04d6235170f27e6d7dfce589722a2)
+* [VASTのコード](https://gist.github.com/Yuki-Kanamori/42d04d6235170f27e6d7dfce589722a2)    
     [VASTのマニュアル](https://github.com/James-Thorson-NOAA/VAST/blob/master/deprecated_examples/VAST--single-species_example.Rmd) をきちんと動くように修正したもの
 * [作図コード](url)
 
