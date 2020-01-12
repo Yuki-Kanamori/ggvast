@@ -11,7 +11,7 @@
 * `{ggvast}`はこれらの問題を解決し，様々なハビタット，生物，研究分野で`{VAST}`を使いやすくすることを目標としている
 
 ## 注意点
-* 予めVASTのコードを編集する必要があります
+* あらかじめVASTのコードを編集する必要があります
   ```
   Data_Geostat = cbind(Data_Geostat, knot_i = Spatial_List[["knot_i"]])
   ```
