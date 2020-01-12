@@ -53,14 +53,15 @@ Data_Geostat = data.frame( "spp"=DF[,"Sci"], "Year"=DF[,"Year"], "Catch_KG"=DF[,
   `get_dens()`で作成したデータフレームから推定密度のマップを作成する．VASTの推定密度とノミナルデータの両方に対応．    
   ![map_dens](figures/stock_asessment_fig33.png)
 * #### `plot_index()`    
-  推定された指標値（`Table_for_SS3.csv`）とノミナル指標値を一つの図にプロットする．とりあえずはノミナルとVASTの2種類のみをプロットできる．今後，複数の推定指標値をプロットできるように拡張する予定
+  推定された指標値（`Table_for_SS3.csv`）とノミナル指標値を一つの図にプロットする．推定指標値が複数（つまりVASTの結果が複数）の場合も作図可能．**現在のところカテゴリーが複数ある場合には対応していない**
   ![map_dens](figures/stock_asessment_fig32.png)
 
 ## 参考資料
 ### vastのコード
-* 複数のカテゴリーで解析した事例（masaVAST）
-* catchability covariateに他種の密度，overdispersion configに年と月の交互作用を入れた事例（[gomasaVAST](https://github.com/Yuki-Kanamori/gomasaVAST)）
-* 共変量に水温を入れた事例（masaVAST_NPFC2018）
+* 複数のカテゴリーで解析した例（masaVAST）
+* catchability covariateに他種の密度，overdispersion configに年と月の交互作用を入れた例（[gomasaVAST](https://github.com/Yuki-Kanamori/gomasaVAST)）
+* 共変量に水温を入れた例（masaVAST_NPFC2018）
+* catchability covariateに漁具を入れた例（chiVAST）
 
 ### `{ggvast}`を使った論文・ドキュメント
 * Kanamori Y, Takasuka A, Nishijima S, Okamura H (2019) Climate change shifts the spawning ground northward and extends the spawning period of chub mackerel in the western North Pacific. MEPS 624:155–166
@@ -72,4 +73,4 @@ http://abchan.fra.go.jp/digests2019/index.html （アップ待ち）
 
 
 ## 特記事項
-**`{ggvast}`は業務外の時間にパッケージ開発について学び作成しているものであるため，水研業務とは無関係です**
+**`{ggvast}`は業務外の時間にパッケージ開発について学び作成しているもの（単なる趣味）であるため，水研業務とは無関係です**

@@ -9,7 +9,7 @@ vast_output_dirname = "/Users/Yuki/Dropbox/iwac/iwac_MacPro/vast2019-07-19_lnorm
 
 # load data -----------------------------------------------------
 setwd(dir = vast_output_dirname)
-DG = read.csv("Data_Geostat_sar.csv")
+DG = read.csv("Data_Geostat.csv")
 
 
 # make function -------------------------------

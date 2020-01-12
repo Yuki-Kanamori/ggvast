@@ -19,7 +19,7 @@ map_output_dirname = ##
 # load data -----------------------------------------------------
 setwd(dir = vast_output_dirname)
 load("Save.RData")
-DG = read.csv("Data_Geostat_sar.csv")
+DG = read.csv("Data_Geostat.csv")
 
 
 # make function -------------------------------
