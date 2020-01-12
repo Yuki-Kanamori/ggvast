@@ -5,7 +5,7 @@ ncol = 5 #number of figures in line side by side (max is no. of "Category")
 shape = 16 #16 is closed dot
 size = 1.9 #size of shape
 region = "Japan"
-#region_list = unique(map_data("world")$region)
+region_list = unique(map_data("world")$region)
 
 map_dens(data = df_dens,
          scale_name = "Log density",

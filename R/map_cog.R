@@ -20,7 +20,7 @@
 #' @export
 
 
-map_cog = function(category_name, zone, labs, ncol, shape, size, package){
+map_cog = function(category_name, region, labs, ncol, shape, size, package){
   #make a COG_Table using VAST package
   #re-make default figures of COG and Effective Area
   if(package == "SpatialDeltaGLMM"){
@@ -62,6 +62,7 @@ map_cog = function(category_name, zone, labs, ncol, shape, size, package){
   x = lat$COG_hat*1000
   y = lon$COG_hat*1000
   xy = cbind(x,y)
+  zone = unique(DG$zone)
   lonlat = data.frame(project(xy, paste0("+proj=utm +zone=", zone, " ellps=WGS84"), inv = TRUE))
   colnames(lonlat) = c("lon", "lat")
   lonlat = cbind(lonlat, lat[, c("Year", "Category")])
@@ -70,8 +71,8 @@ map_cog = function(category_name, zone, labs, ncol, shape, size, package){
   #make COG maps
   map = ggplot() + coord_fixed() + xlab("Longitude") + ylab("Latitude")
   world_map = map_data("world")
-  jap = subset(world_map, world_map$region == "Japan")
-  jap_map = map + geom_polygon(data = jap, aes(x = long, y = lat, group = group), colour = "gray 50", fill = "gray 50") + coord_map(xlim = c(min(lonlat$lon)-1, max(lonlat$lon)+1), ylim = c(min(lonlat$lat)-1, max(lonlat$lat)+1))
+  region2 = subset(world_map, world_map$region == region)
+  local_map = map + geom_polygon(data = region2, aes(x = long, y = lat, group = group), colour = "gray 50", fill = "gray 50") + coord_map(xlim = c(min(data$lon)-1, max(data$lon)+1), ylim = c(min(data$lat)-1, max(data$lat)+1))
   th = theme(panel.grid.major = element_blank(),
              panel.grid.minor = element_blank(),
              axis.text.x = element_text(size = rel(1.5)),
@@ -83,8 +84,10 @@ map_cog = function(category_name, zone, labs, ncol, shape, size, package){
   f = facet_wrap( ~ Category, ncol = ncol)
   c = scale_colour_gradientn(colours = c("black", "blue", "cyan", "green", "yellow", "orange", "red", "darkred"))
   if(category_name == 1){
-    jap_map+theme_bw()+th+p+c+labs
+    fig = local_map+theme_bw()+th+p+c+labs
+    ggsave(filename = "map_cog.pdf", plot = fig, units = "in", width = 8.27, height = 11.69)
   }else{
-    jap_map+theme_bw()+th+p+f+c+labs
+    fig = local_map+theme_bw()+th+p+f+c+labs
+    ggsave(filename = "map_cog.pdf", plot = fig, units = "in", width = 8.27, height = 11.69)
   }
 }

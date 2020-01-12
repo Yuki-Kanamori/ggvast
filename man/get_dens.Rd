@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_dens.R
 \name{get_dens}
 \alias{get_dens}
-\title{Get the estimated density in each knot}
+\title{Get the estimated density in each knot and make dataframe}
 \usage{
 get_dens(category_name)
 }
