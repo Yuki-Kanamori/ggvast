@@ -55,7 +55,7 @@ TmbData = make_data("Version"=Version, "FieldConfig"=FieldConfig, "Overdispersio
   `get_dens()`で作成したデータフレームから推定密度のマップを作成する．VASTの推定密度とノミナルデータの両方に対応．    
   ![map_dens](figures/stock_asessment_fig33.png)
 * #### `plot_index`    
-  `{VAST}`から推定された指標値とノミナル指標値を一つの図にプロットする    
+  `{VAST}`から推定された指標値とノミナル指標値を一つの図にプロットする．とりあえずは，ノミナルとVASTの2種類のみをプロットできる．今後，複数の推定指標値をプロットできるように拡張する予定
   ![map_dens](figures/stock_asessment_fig32.png)
 
 ## 参考資料
