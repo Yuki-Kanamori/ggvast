@@ -16,7 +16,7 @@
   Data_Geostat = cbind(Data_Geostat, knot_i = Spatial_List[["knot_i"]])
   ```
 
-  を
+  ⬇︎
 
   ```
   Data_Geostat = cbind(Data_Geostat, knot_i = Spatial_List[["knot_i"]], zone = Extrapolation_List[["zone"]])
