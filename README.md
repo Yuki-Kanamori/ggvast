@@ -1,5 +1,4 @@
-`{ggvast}` とは
-=============
+## `{ggvast}` とは
 * `{VAST}`の推定結果を作図するためのパッケージ
 * `{VAST}`では`{FishStatsUtils}`を用いて作図をしているが，以下のような不便な点がある
   * 後日，Save.RDataを使って作図をすることができない
@@ -11,8 +10,7 @@
   * COGの変化がkmで表示される    
 * `{ggvast}`はこれらの問題を解決し，様々なハビタット，生物，研究分野で`{VAST}`を使いやすくすることを目標としている
 
-注意点
-=============
+## 注意点
 * VASTのコードをあらかじめ編集する必要があります
   ```
   Data_Geostat = cbind(Data_Geostat, knot_i = Spatial_List[["knot_i"]])
@@ -29,18 +27,15 @@
 * `{ggvast}`に含まれる関数と関数から作成される図表は，『`{ggvast}` に含まれる関数』をご覧下さい
 * ご意見ご要望がある場合にはissueまで
 
-例題
-=============
-### [VASTコード](https://gist.github.com/Yuki-Kanamori/42d04d6235170f27e6d7dfce589722a2)
+## 例題
+* [VASTコード](https://gist.github.com/Yuki-Kanamori/42d04d6235170f27e6d7dfce589722a2)
   [VASTのマニュアル](https://github.com/James-Thorson-NOAA/VAST/blob/master/deprecated_examples/VAST--single-species_example.Rmd) をきちんと動くように修正したもの
-### [作図コード](url)
+* [作図コード](url)
 
-インストール方法
-=============
+## インストール方法
 * 準備中
 
-`{ggvast}` に含まれる関数
-=============
+## `{ggvast}` に含まれる関数
 * `map_cog()`: COGを地図上にプロットする（推定値のみに対応．ノミナルデータでも描けるように拡張中）
 ![map_cog](figures/meps_fig4.png)
 * `get_dens()`: `Save.RData`から各knotごとの推定密度を抽出し，データフレームを作成する
@@ -48,8 +43,7 @@
 ![map_dens](figures/stock_asessment_fig33.png)
 * `plot_index`: `{VAST}`から推定された指標値とノミナル指標値を一つの図にプロットする
 
-参考文献など
-=============
+## 参考資料
 ### `{ggvast}`を使った論文・ドキュメント
 * Kanamori Y, Takasuka A, Nishijima S, Okamura H (2019) Climate change shifts the spawning ground northward and extends the spawning period of chub mackerel in the western North Pacific. MEPS 624:155–166
 https://doi.org/10.3354/meps13037
@@ -62,6 +56,5 @@ http://abchan.fra.go.jp/digests2019/index.html （アップ待ち）
 * catchability covariateとoverdispersion configを用いた事例（[gomasaVAST](https://github.com/Yuki-Kanamori/gomasaVAST)）
 * 共変量に水温を入れた事例（masaVAST_NPFC2018）
 
-特記事項
-=============
+## 特記事項
 **`{ggvast}`は趣味で作成しているもので，業務とは無関係です**
