@@ -42,6 +42,7 @@
 * `map_dens()`: `get_dens`で作成したデータフレームから推定密度のマップを作成する（推定値のみに対応．ノミナルデータでも描けるように拡張中）  
 ![map_dens](figures/stock_asessment_fig33.png)
 * `plot_index`: `{VAST}`から推定された指標値とノミナル指標値を一つの図にプロットする
+![map_dens](figures/stock_asessment_fig32.pdf)
 
 ## 参考資料
 ### vastのコード
