@@ -22,6 +22,14 @@
   Data_Geostat = cbind(Data_Geostat, knot_i = Spatial_List[["knot_i"]], zone = Extrapolation_List[["zone"]])
   write.csv(Data_Geostat, "Data_Geostat.csv")
   ```
+* 複数種で解析する場合は[複数種の例題](https://github.com/James-Thorson-NOAA/VAST/blob/master/deprecated_examples/VAST--multispecies_example.Rmd)にならい，Data_Geostatの種に関する列名は **spp** として下さい
+```
+Data_Geostat = data.frame( "spp"=DF[,"Sci"], "Year"=DF[,"Year"], "Catch_KG"=DF[,"Wt"], "AreaSwept_km2"=0.01, "Vessel"=0, "Lat"=DF[,"Lat"], "Lon"=DF[,"Long"] )
+```
+```
+TmbData = make_data("Version"=Version, "FieldConfig"=FieldConfig, "OverdispersionConfig"=OverdispersionConfig, "RhoConfig"=RhoConfig, "ObsModel"=ObsModel, "c_i"=as.numeric(Data_Geostat[,'spp'])-1, "b_i"=Data_Geostat[,'Catch_KG'], "a_i"=Data_Geostat[,'AreaSwept_km2'], "v_i"=as.numeric(Data_Geostat[,'Vessel'])-1, "s_i"=Data_Geostat[,'knot_i']-1, "t_i"=Data_Geostat[,'Year'], "spatial_list"=Spatial_List, "Options"=Options)
+```
+
 * 関数は書きあげましたが，パッケージ化に必要な種々のファイル（例えばDESCRIPTIONやマニュアル）の作成が間に合っておりません（パッケージ作りが初めてな上に一人で作っているので，作業スピードは亀です．．．）
 * **パッケージ化までは，pre_Rフォルダ内のRコードをコピペして使ってください**
 * `{ggvast}`に含まれる関数と関数から作成される図表は，『`{ggvast}` に含まれる関数』をご覧下さい
@@ -36,12 +44,18 @@
 * 準備中
 
 ## `{ggvast}` に含まれる関数
-* `map_cog()`: COGを地図上にプロットする（推定値のみに対応．ノミナルデータでもCOGを計算しマップできるように拡張する予定）
+### `map_cog()`   
+  COGを地図上にプロットする．VASTの推定COGとノミナルデータ両方に対応．ノミナルデータのCOGをプロットする場合には，**`先にget_cog()`でCOGを計算する必要がある**
 ![map_cog](figures/meps_fig4.png)
-* `get_dens()`: `Save.RData`から各knotごとの推定密度を抽出し，データフレームを作成する
-* `map_dens()`: `get_dens`で作成したデータフレームから推定密度のマップを作成する（推定値のみに対応．ノミナルデータでも描けるように拡張中）  
+### `get_cog()`    
+  ノミナルデータからCOGを計算し，データフレームを作成する
+### `get_dens()`    
+`Save.RData`から各knotごとの推定密度を抽出し，データフレームを作成する
+### `map_dens()`    
+  `get_dens()`で作成したデータフレームから推定密度のマップを作成する．VASTの推定密度とノミナルデータの両方に対応．
 ![map_dens](figures/stock_asessment_fig33.png)
-* `plot_index`: `{VAST}`から推定された指標値とノミナル指標値を一つの図にプロットする
+### `plot_index`    
+  `{VAST}`から推定された指標値とノミナル指標値を一つの図にプロットする
 ![map_dens](figures/stock_asessment_fig32.png)
 
 ## 参考資料
@@ -60,4 +74,4 @@ http://abchan.fra.go.jp/digests2019/index.html （アップ待ち）
 
 
 ## 特記事項
-**`{ggvast}`は趣味で作成しているもので，業務とは無関係です**
+**`{ggvast}`は業務外の時間にパッケージ開発について学び作成しているものであるため，水研業務とは無関係です**

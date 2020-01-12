@@ -1,11 +1,19 @@
-vast_output_dirname = "/Users/Yuki/Dropbox/iwac/iwac_MacPro/vast2019-07-19_lnorm_log100sardine"
-category_name = c("January","February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December")
 
+# packages ------------------------------------------------------
+require(tidyverse)
+
+# please change here --------------------------------------------
+vast_output_dirname = "/Users/Yuki/Dropbox/iwac/iwac_MacPro/vast2019-07-19_lnorm_log100sardine"
+category_name = c("January","February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December") #カテゴリーの名前（魚種名や銘柄など）
+
+
+# load data -----------------------------------------------------
 setwd(dir = vast_output_dirname)
 load("Save.RData")
 DG = read.csv("Data_Geostat_sar.csv")
-df_dens = get_dens(category_name = category_name)
 
+# make function -------------------------------
+# !!! DO NOT CHANGE HERE !!! ------------------------------------
 get_dens = function(category_name){
   n_c = Save$TmbData$n_c #category (month)
   n_t = Save$TmbData$n_t #year
@@ -47,3 +55,6 @@ get_dens = function(category_name){
   tag2 = data_frame(category_name = category_name, category = rep(1:length(category_name)))
   df = merge(df, tag2, by = "category") %>% arrange(knot_i, year, category, lat, lon)
 }
+
+# run function and get data-frame ----------------------------------
+df_dens = get_dens(category_name = category_name)
