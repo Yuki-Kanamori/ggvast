@@ -52,11 +52,11 @@ TmbData = make_data("Version"=Version, "FieldConfig"=FieldConfig, "Overdispersio
 * #### `get_dens()`    
   `Save.RData`から各knotごとの推定密度を抽出し，データフレームを作成する
 * #### `map_dens()`    
-  `get_dens()`で作成したデータフレームから推定密度のマップを作成する．VASTの推定密度とノミナルデータの両方に対応．
-![map_dens](figures/stock_asessment_fig33.png)
+  `get_dens()`で作成したデータフレームから推定密度のマップを作成する．VASTの推定密度とノミナルデータの両方に対応．    
+  ![map_dens](figures/stock_asessment_fig33.png)
 * #### `plot_index`    
-  `{VAST}`から推定された指標値とノミナル指標値を一つの図にプロットする
-![map_dens](figures/stock_asessment_fig32.png)
+  `{VAST}`から推定された指標値とノミナル指標値を一つの図にプロットする    
+  ![map_dens](figures/stock_asessment_fig32.png)
 
 ## 参考資料
 ### vastのコード
