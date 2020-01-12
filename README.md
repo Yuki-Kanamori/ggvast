@@ -44,10 +44,10 @@ TmbData = make_data("Version"=Version, "FieldConfig"=FieldConfig, "Overdispersio
 * 準備中
 
 ## `{ggvast}` に含まれる関数
-* #### `map_cog()`   
+* ### `map_cog()`   
   COGを地図上にプロットする．VASTの推定COGとノミナルデータ両方に対応．ノミナルデータのCOGをプロットする場合には，**`先にget_cog()`でCOGを計算する必要がある**
 ![map_cog](figures/meps_fig4.png)
-* `get_cog()`    
+* #### `get_cog()`    
   ノミナルデータからCOGを計算し，データフレームを作成する
 * `get_dens()`    
 `Save.RData`から各knotごとの推定密度を抽出し，データフレームを作成する
