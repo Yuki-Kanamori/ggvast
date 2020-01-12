@@ -48,7 +48,7 @@
 * Kanamori Y, Takasuka A, Nishijima S, Okamura H (2019) Climate change shifts the spawning ground northward and extends the spawning period of chub mackerel in the western North Pacific. MEPS 624:155–166
 https://doi.org/10.3354/meps13037
 * Kanamori Y, Takasuka A, Nishijima S, Ichinokawa M, Okamura H (2019) Standardizing abundance index for spawning stock biomass of chub mackerel in the Northwest Pacific. NPFC-2018-TWG CMSA02-WP03
-* 令和元 (2019) 年度ゴマサバ太平洋系群の資源評価
+* 令和元 (2019) 年度ゴマサバ太平洋系群の資源評価    
 http://abchan.fra.go.jp/digests2019/index.html （アップ待ち）
 
 ### vastのコード
