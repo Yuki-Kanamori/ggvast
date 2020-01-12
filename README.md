@@ -44,6 +44,11 @@
 * `plot_index`: `{VAST}`から推定された指標値とノミナル指標値を一つの図にプロットする
 
 ## 参考資料
+### vastのコード
+* 複数のカテゴリーで解析した事例（masaVAST）
+* catchability covariateに他種の密度，overdispersion configに年と月の交互作用を入れた事例（[gomasaVAST](https://github.com/Yuki-Kanamori/gomasaVAST)）
+* 共変量に水温を入れた事例（masaVAST_NPFC2018）
+
 ### `{ggvast}`を使った論文・ドキュメント
 * Kanamori Y, Takasuka A, Nishijima S, Okamura H (2019) Climate change shifts the spawning ground northward and extends the spawning period of chub mackerel in the western North Pacific. MEPS 624:155–166
 https://doi.org/10.3354/meps13037
@@ -51,10 +56,7 @@ https://doi.org/10.3354/meps13037
 * 令和元 (2019) 年度ゴマサバ太平洋系群の資源評価    
 http://abchan.fra.go.jp/digests2019/index.html （アップ待ち）
 
-### vastのコード
-* 複数のカテゴリーで解析した事例（masaVAST）
-* catchability covariateとoverdispersion configを用いた事例（[gomasaVAST](https://github.com/Yuki-Kanamori/gomasaVAST)）
-* 共変量に水温を入れた事例（masaVAST_NPFC2018）
+
 
 ## 特記事項
 **`{ggvast}`は趣味で作成しているもので，業務とは無関係です**
