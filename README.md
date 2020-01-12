@@ -11,7 +11,7 @@
 * `{ggvast}`はこれらの問題を解決し，様々なハビタット，生物，研究分野で`{VAST}`を使いやすくすることを目標としている
 
 ## 注意点
-* VASTのコードをあらかじめ編集する必要があります
+* 予めVASTのコードを編集する必要があります
   ```
   Data_Geostat = cbind(Data_Geostat, knot_i = Spatial_List[["knot_i"]])
   ```
@@ -22,7 +22,7 @@
   Data_Geostat = cbind(Data_Geostat, knot_i = Spatial_List[["knot_i"]], zone = Extrapolation_List[["zone"]])
   write.csv(Data_Geostat, "Data_Geostat.csv")
   ```
-* 関数は書きあげましたが，パッケージ化に必要な種々のファイル（例えばDESCRIPTIONやマニュアル）の作成が間に合っておりません（パッケージ作りは初めてな上に一人で作っているので，作業スピードは亀です．．．）
+* 関数は書きあげましたが，パッケージ化に必要な種々のファイル（例えばDESCRIPTIONやマニュアル）の作成が間に合っておりません（パッケージ作りが初めてな上に一人で作っているので，作業スピードは亀です．．．）
 * **パッケージ化までは，pre_Rフォルダ内のRコードをコピペして使ってください**
 * `{ggvast}`に含まれる関数と関数から作成される図表は，『`{ggvast}` に含まれる関数』をご覧下さい
 * ご意見ご要望がある場合にはissueまで
