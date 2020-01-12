@@ -11,7 +11,7 @@
 * `{ggvast}`はこれらの問題を解決し，様々なハビタット，生物，研究分野で`{VAST}`を使いやすくすることを目標としている
 
 ## 注意点
-* あらかじめVASTのコードを編集する必要があります
+* あらかじめVASTのコードを編集する必要がある
   ```
   Data_Geostat = cbind(Data_Geostat, knot_i = Spatial_List[["knot_i"]])
   ```
@@ -22,16 +22,16 @@
   Data_Geostat = cbind(Data_Geostat, knot_i = Spatial_List[["knot_i"]], zone = Extrapolation_List[["zone"]])
   write.csv(Data_Geostat, "Data_Geostat.csv")
   ```
-* 複数種で解析する場合は[複数種の例題](https://github.com/James-Thorson-NOAA/VAST/blob/master/deprecated_examples/VAST--multispecies_example.Rmd)にならい，Data_Geostatの種に関する列名は **spp** として下さい
+* 複数種で解析する場合は[複数種の例題](https://github.com/James-Thorson-NOAA/VAST/blob/master/deprecated_examples/VAST--multispecies_example.Rmd)にならい，Data_Geostatの種に関する列名を**spp** とする
 ```
 Data_Geostat = data.frame( "spp"=DF[,"Sci"], "Year"=DF[,"Year"], "Catch_KG"=DF[,"Wt"], "AreaSwept_km2"=0.01, "Vessel"=0, "Lat"=DF[,"Lat"], "Lon"=DF[,"Long"] )
 ```
 
 
-* 関数は書きあげましたが，パッケージ化に必要な種々のファイル（例えばDESCRIPTIONやマニュアル）の作成が間に合っておりません（パッケージ作りが初めてな上に一人で作っているので，作業スピードは亀です．．．）
-* **パッケージ化までは，pre_Rフォルダ内のRコードをコピペして使ってください**
-* `{ggvast}`に含まれる関数と関数から作成される図表は，『`{ggvast}` に含まれる関数』をご覧下さい
-* ご意見ご要望がある場合にはissueまで
+* 関数は書き終えたが，パッケージ化に必要な種々のファイル（例えばDESCRIPTIONやマニュアル）の作成が間に合っていない（パッケージ作りが初めてな上に一人で作っているので，作業スピードは亀です．．．）
+* **パッケージ化までは，pre_Rフォルダ内のRコードをコピペして使う**
+* `{ggvast}`に含まれる関数と関数から作成される図表は，『`{ggvast}` に含まれる関数』を参照
+* ご意見ご要望はissueまで
 
 ## 例題
 * [VASTのコード](https://gist.github.com/Yuki-Kanamori/42d04d6235170f27e6d7dfce589722a2)    
