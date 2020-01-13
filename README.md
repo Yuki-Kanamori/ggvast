@@ -45,11 +45,12 @@
 * #### `map_cog()`   
   COGを地図上にプロットする．VASTの推定COGとノミナルデータ両方に対応．ノミナルデータのCOGをプロットする場合には，**先に`get_cog()`でCOGを計算する必要がある**
   * 関数チェック済: VASTの推定COG（単一種・複数種）
-![map_cog](figures/meps_fig4.png)
+  ![map_cog](figures/meps_fig4.png)
 * #### `get_cog()`    
   ノミナルデータからCOGを計算し，データフレームを作成する
 * #### `get_dens()`    
   `Save.RData`から各knotごとの推定密度を抽出し，データフレームを作成する
+  ![get_dens](figures/df_dens.png)
 * #### `map_dens()`    
   `get_dens()`で作成したデータフレームから推定密度のマップを作成する．VASTの推定密度とノミナルデータの両方に対応    
   ![map_dens](figures/stock_asessment_fig33.png)
