@@ -62,7 +62,7 @@
 * #### `plot_index()`    
   推定された指標値（`Table_for_SS3.csv`）とノミナル指標値を一つの図にプロットする．推定指標値が複数（つまりVASTの結果が複数）の場合も作図可能    
   * 関数チェック済: 単一種・複数種
-  ![map_dens](figures/stock_asessment_fig32.png)
+  ![plot_index](figures/stock_asessment_fig32.png)
 
 ## 参考資料
 ### vastのコード
