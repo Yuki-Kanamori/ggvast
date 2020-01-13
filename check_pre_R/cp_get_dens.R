@@ -3,11 +3,18 @@
 require(tidyverse)
 
 # please change here --------------------------------------------
-vast_output_dirname = "///"
+vast_output_dirname = "/Users/Yuki/Dropbox/saVAST_egg/vast2019-11-11_lnorm_log100chub_fixed"
 category_name = c("spotted") #カテゴリーの名前（魚種名や銘柄など）
+
+vast_output_dirname = "/Users/Yuki/Dropbox/iwac/iwac_MacPro/vast2019-07-19_lnorm_log100sardine"
+category_name = c("January","February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December") #カテゴリーの名前（魚種名や銘柄など）　nominalの場合はNULL
 
 
 # load data -----------------------------------------------------
+setwd(dir = vast_output_dirname)
+load("Save.RData")
+DG = read.csv("Data_Geostat.csv")
+
 setwd(dir = vast_output_dirname)
 load("Save.RData")
 DG = read.csv("Data_Geostat_sar.csv")

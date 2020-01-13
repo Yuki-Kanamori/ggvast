@@ -6,11 +6,11 @@ require(mapdata)
 require(tidyverse)
 require(ggplot2)
 require(FishStatsUtils)
-#require(SpatialDeltaGLMM) #if you use
+#require(SpatialDeltaGLMM) #if nedded
 
 # please change here --------------------------------------------
 ### single species
-vast_output_dirname = "/Users/Yuki/Dropbox/saVAST_egg/vast2019-11-11_lnorm_log100chub_fixed"
+vast_output_dirname = "///"
 data_type = c("VAST", "nominal")[1]
 category_name = c("spotted") #カテゴリーの名前（魚種名や銘柄など）　nominalの場合はNULL
 unique(map_data("world")$region)
@@ -19,20 +19,7 @@ ncol = 5 #横にいくつ図を並べるか（最大数 = カテゴリー数）
 shape = 16 #16はclosed dot（他はhttps://subscription.packtpub.com/book/big_data_and_business_intelligence/9781788398312/2/ch02lvl1sec16/plotting-a-shape-reference-palette-for-ggplot2を参照）
 size = 1.9 #shapeの大きさ
 package = c("SpatialDeltaGLMM", "FishStatsUtils")[2]
-map_output_dirname = "/Users/Yuki/Dropbox/vastws"
-fileEncoding = "CP932"
-
-### multi species
-vast_output_dirname = "/Users/Yuki/Dropbox/iwac/iwac_MacPro/vast2019-07-19_lnorm_log100sardine"
-data_type = c("VAST", "nominal")[1]
-category_name = c("January","February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December") #カテゴリーの名前（魚種名や銘柄など）　nominalの場合はNULL
-unique(map_data("world")$region)
-region = "Japan" #作図する地域を選ぶ
-ncol = 5 #横にいくつ図を並べるか（最大数 = カテゴリー数）
-shape = 16 #16はclosed dot（他はhttps://subscription.packtpub.com/book/big_data_and_business_intelligence/9781788398312/2/ch02lvl1sec16/plotting-a-shape-reference-palette-for-ggplot2を参照）
-size = 1.9 #shapeの大きさ
-package = c("SpatialDeltaGLMM", "FishStatsUtils")[2]
-map_output_dirname = "/Users/Yuki/Dropbox/vastws"
+map_output_dirname = "///"
 fileEncoding = "CP932"
 
 
@@ -40,10 +27,6 @@ fileEncoding = "CP932"
 setwd(dir = vast_output_dirname)
 load("Save.RData")
 DG = read.csv("Data_Geostat.csv")
-
-setwd(dir = vast_output_dirname)
-load("Save.RData")
-DG = read.csv("Data_Geostat_sar.csv")
 
 # make function -------------------------------
 # !!! DO NOT CHANGE HERE !!! ------------------------------------
