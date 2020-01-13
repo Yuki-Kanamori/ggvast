@@ -48,12 +48,12 @@
   ![map_cog](figures/meps_fig4.png)
 * #### `get_cog()`    
   ノミナルデータからCOGを計算し，データフレームを作成する    
-  * 関数チェック済: 単一種・複数種
-  ![get_cog](figures/get_cog.png)
+  * 関数チェック済: 単一種・複数種    
+    ![get_cog](figures/get_cog.png)
 * #### `get_dens()`    
   `Save.RData`から各knotごとの推定値を抽出し，データフレームを作成する
   * 関数チェック済: 単一種・複数種    
-  ![get_dens](figures/get_dens.png)
+    ![get_dens](figures/get_dens.png)
 * #### `map_dens()`    
   アバンダンスを地図上にプロットする．VASTの推定値とノミナルデータの両方に対応．VASTの推定値をプロットする場合には，**先に`get_dens()`で`Save.RData`から推定値を抽出する必要がある**    
   **> 0データのみをプロットしたい場合には，> 0データのみのデータフレームを作成し関数にわたす**
