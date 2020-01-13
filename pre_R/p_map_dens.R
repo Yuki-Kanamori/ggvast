@@ -21,7 +21,7 @@ scale_name = "Log density" #凡例　色の違いが何を表しているのか�
 ncol = 5 #横にいくつ図を並べるか（最大数 = 年数）
 shape = 16 #16はclosed dot（他はhttps://subscription.packtpub.com/book/big_data_and_business_intelligence/9781788398312/2/ch02lvl1sec16/plotting-a-shape-reference-palette-for-ggplot2を参照）
 size = 1.9 #shapeの大きさ
-map_output_dirname = "/Users/Yuki/Dropbox/vastws"
+map_output_dirname = "///"
 
 # make function -------------------------------
 # !!! DO NOT CHANGE HERE !!! ------------------------------------
