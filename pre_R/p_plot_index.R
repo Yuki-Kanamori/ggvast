@@ -6,11 +6,9 @@ require(ggplot2)
 
 
 # please change here --------------------------------------------
-vast_output_dirname = "/Users/Yuki/Dropbox/saVAST_egg/vast2019-11-11_lnorm_log100chub_fixed"
-category_name = c("spotted")
-
-vast_output_dirname = "/Users/Yuki/Dropbox/iwac/iwac_MacPro/vast2019-07-19_lnorm_log100sardine"
-category_name = c("January","February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December") #カテゴリーの名前（魚種名や銘柄など）
+vast_output_dirname = "///"
+category_name = c("spotted") #カテゴリーの名前（魚種名や銘柄など）
+fig_output_dirname = "///"
 
 # load data and make data_frame ----------------------------------------------------------
 setwd(dir = vast_output_dirname)
@@ -26,7 +24,7 @@ DG = read.csv("Data_Geostat.csv")
 
 # make function -------------------------------
 # !!! DO NOT CHANGE HERE !!! ------------------------------------
-plot_index = function(vast_index, DG, category_name){
+plot_index = function(vast_index, DG, category_name, fig_output_dirname){
   #single-species
   if(!("spp" %in% names(DG))){
     #calculate confidence interval
@@ -68,7 +66,8 @@ plot_index = function(vast_index, DG, category_name){
       strip.text = element_text(size = rel(1.3)), #ファセットのタイトル
       plot.title = element_text(size = rel(1.5))) #タイトル
     fig = g+p+e+l+lb+theme_bw()+th
-    ggsave(filename = "index.pdf"), plot = fig, units = "in", width = 8.27, height = 11.69)
+    setwd(dir = fig_output_dirname)
+    ggsave(filename = "index.pdf", plot = fig, units = "in", width = 8.27, height = 11.69)
 
   }else{
 
@@ -76,10 +75,12 @@ plot_index = function(vast_index, DG, category_name){
     trend = c()
     vast_index = vast_index %>% mutate(ntype = as.numeric(as.factor(type)))
     for(j in 1:length(unique(vast_index$Category))){
+      #j = 1
       data = vast_index %>% filter(Category == j)
 
       #calculate confidence interval
       for(i in 1:length(unique(vast_index$ntype))){
+        #i = 1
         data = vast_index %>% filter(ntype == i)
 
         data = data %>% mutate(scaled = Estimate_metric_tons/mean(Estimate_metric_tons))
@@ -93,10 +94,18 @@ plot_index = function(vast_index, DG, category_name){
     trend = trend %>% select(Year, kukan_u2, kukan_l2, type, scaled, Category)
 
     #normarize and calculate confidence interval
-    nominal = ddply(DG, .(Year, spp), summarize, mean = mean(Catch_KG))
+    DG2 = ddply(DG, .(Year, spp), summarize, mean = mean(Catch_KG))
+    DG2 = DG2 %>% mutate(nspp = as.numeric(as.factor(spp)))
     #こっから変
-    nominal = nominal %>% mutate(scaled = nominal$mean/mean(nominal$mean), type = "nominal")
-    nominal = nominal %>% select(Year, kukan_u2, kukan_l2, type, scaled)
+    nominal = c()
+    for(i in 1:length(unique(DG2))){
+      data2 = DG2 %>% filter(nspp = i)
+      data2 = data2 %>% mutate(scaled = nominal$mean/mean(nominal$mean), type = "nominal")
+      data2 = nominal %>% select(Year, kukan_u2, kukan_l2, type, scaled, spp)
+
+      nominal = rbind(nominal, data2)
+    }
+    nominal = nominal %>% dplyr::rename(Category = spp)
     trend = rbind(trend, nominal)
 
     #plot
@@ -113,7 +122,7 @@ plot_index = function(vast_index, DG, category_name){
       axis.text.y = element_text(size = rel(1.5)), #y軸メモリ
       axis.title.x = element_text(size = rel(1.5)), #x軸タイトル
       axis.title.y = element_text(size = rel(1.5)),
-      legend.title = element_text(size = 13), #凡例タイトル
+      legend.title = element_text(size = rel(1.5)), #凡例タイトル
       legend.text = element_text(size = rel(1.5)),
       strip.text = element_text(size = rel(1.3)), #ファセットのタイトル
       plot.title = element_text(size = rel(1.5))) #タイトル
