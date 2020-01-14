@@ -8,7 +8,7 @@
     * 推定密度のマップでは，NorthtingやEastingで表示される
   * 推定密度のマップとリジェンドが別々のファイルになる
   * COGの変化がkmで表示される    
-* `{ggvast}`はこれらの問題を解決し，様々なハビタット，生物，研究分野で`{VAST}`を使いやすくすることを目標としている
+* ggvast はこれらの問題を解決し，様々なハビタット，生物，研究分野で`{VAST}`を使いやすくすることを目標としている
 
 ## 注意点
 * あらかじめVASTのコードを編集する必要がある
@@ -65,13 +65,13 @@
   ![plot_index](figures/stock_asessment_fig32.png)
 
 ## 参考資料
-### vastのコード
+### VASTのコード
 * 複数のカテゴリーで解析した例（masaVAST）
 * catchability covariateに他種の密度，overdispersion configに年と月の交互作用を入れた例（[gomasaVAST](https://github.com/Yuki-Kanamori/gomasaVAST)）
 * 共変量に水温を入れた例（masaVAST_NPFC2018）
 * catchability covariateに漁具を入れた例（chiVAST）
 
-### ggvastを使った論文・ドキュメント
+### ggvast を使った論文・ドキュメント
 * Kanamori Y, Takasuka A, Nishijima S, Okamura H (2019) Climate change shifts the spawning ground northward and extends the spawning period of chub mackerel in the western North Pacific. MEPS 624:155–166
 https://doi.org/10.3354/meps13037
 * Kanamori Y, Takasuka A, Nishijima S, Ichinokawa M, Okamura H (2019) Standardizing abundance index for spawning stock biomass of chub mackerel in the Northwest Pacific. NPFC-2018-TWG CMSA02-WP03

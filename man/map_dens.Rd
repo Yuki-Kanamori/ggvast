@@ -4,10 +4,12 @@
 \alias{map_dens}
 \title{Plot the estimated density on map}
 \usage{
-map_dens(data, region, scale_name, ncol, shape, size)
+map_dens(data, data_type, region, scale_name, ncol, shape, size)
 }
 \arguments{
 \item{data}{dataframe made by get_dens function}
+
+\item{data_type}{VAST or nominal}
 
 \item{region}{region of the data
 \describe{
