@@ -1,4 +1,4 @@
-## `{ggvast}` とは
+## ggvast とは
 * `{VAST}`の推定結果を作図するためのパッケージ
 * `{VAST}`では`{FishStatsUtils}`を用いて作図をしているが，以下のような不便な点がある
   * 後日，Save.RDataを使って作図をすることができない
@@ -41,7 +41,7 @@
 ## インストール方法
 * 準備中
 
-## `{ggvast}` に含まれる関数
+## ggvast に含まれる関数
 * #### `map_cog()`   
   COGを地図上にプロットする．VASTの推定COGとノミナルデータ両方に対応．ノミナルデータのCOGをプロットする場合には，**先に`get_cog()`でCOGを計算する必要がある**
   * 関数チェック済: VASTの推定COG（単一種・複数種），ノミナル（単一種・複数種）    
@@ -71,7 +71,7 @@
 * 共変量に水温を入れた例（masaVAST_NPFC2018）
 * catchability covariateに漁具を入れた例（chiVAST）
 
-### `{ggvast}`を使った論文・ドキュメント
+### ggvastを使った論文・ドキュメント
 * Kanamori Y, Takasuka A, Nishijima S, Okamura H (2019) Climate change shifts the spawning ground northward and extends the spawning period of chub mackerel in the western North Pacific. MEPS 624:155–166
 https://doi.org/10.3354/meps13037
 * Kanamori Y, Takasuka A, Nishijima S, Ichinokawa M, Okamura H (2019) Standardizing abundance index for spawning stock biomass of chub mackerel in the Northwest Pacific. NPFC-2018-TWG CMSA02-WP03
