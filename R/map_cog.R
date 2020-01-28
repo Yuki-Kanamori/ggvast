@@ -58,7 +58,7 @@ map_cog = function(data_type, category_name, region, ncol, shape, size, map_outp
     for( cI in 1:Save$TmbData$n_c ){
       for( mI in 1:dim(SD_mean_Z_ctm)[[3]]){
         Tmp = cbind("m"=mI, "Year"=Year_Set, "COG_hat"=SD_mean_Z_ctm[cI,,mI,'Estimate'], "SE"=SD_mean_Z_ctm[cI,,mI,'Std. Error'])
-        if( TmbData$n_c>1 ) Tmp = cbind( "Category"=category_names[cI], Tmp)
+        if( Save$TmbData$n_c>1 ) Tmp = cbind( "Category"=category_names[cI], Tmp)
         COG_Table = rbind(COG_Table, Tmp)
       }}
     ### end the code form plot_range_index() in FishStatsUtils ###

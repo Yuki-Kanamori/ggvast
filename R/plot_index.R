@@ -10,6 +10,7 @@
 #' @importFrom dplyr rename
 #' @importFrom plyr ddply
 #' @importFrom magrittr %>%
+#' @importFrom plyr .
 #' @import magrittr
 #' @import ggplot2
 #' @export

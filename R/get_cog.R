@@ -6,6 +6,7 @@
 #' @importFrom dplyr filter
 #' @importFrom dplyr select
 #' @importFrom plyr ddply
+#' @importFrom plyr .
 #' @import dplyr
 #' @import magrittr
 #'

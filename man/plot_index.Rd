@@ -2,7 +2,7 @@
 % Please edit documentation in R/plot_index.R
 \name{plot_index}
 \alias{plot_index}
-\title{Get the estimated density in each knot and make dataframe}
+\title{Compare the nominal and standardized index}
 \usage{
 plot_index(vast_index, DG, category_name, fig_output_dirname)
 }
@@ -16,5 +16,5 @@ plot_index(vast_index, DG, category_name, fig_output_dirname)
 \item{fig_output_dirname}{directory for output figure}
 }
 \description{
-Get the estimated density in each knot from Save.RData.
+make a figure
 }
