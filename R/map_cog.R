@@ -63,7 +63,6 @@ map_cog = function(data_type, category_name, region, ncol, shape, size, fig_outp
       }}
     ### end the code form plot_range_index() in FishStatsUtils ###
 
-
     #UTM to longitude and latitude
     #year_set = DG %>% select(Year) %>% distinct(Year, .keep_all = T)
     #cog = read.csv("COG_Table.csv")
@@ -73,8 +72,16 @@ map_cog = function(data_type, category_name, region, ncol, shape, size, fig_outp
 
     if(length(unique(category_name)) == 1){
       cog = cog %>% data.frame() %>% mutate(Category = category_name)
+      cog = merge(cog, tag, by = c("Category", "Year")) %>% arrange(Year)
+    }else{
+      cog = cog %>% data.frame()
+      tag2 = data.frame(ncate = unique(cog$Category), Category = category_name)
+      cog = cog %>% rename(ncate = Category)
+      cog = merge(cog, tag2, by = "ncate")
+      cog = merge(cog, tag, by = c("Category", "Year")) %>% arrange(Year)
     }
-    cog = merge(cog, tag, by = c("Category", "Year")) %>% arrange(Year)
+
+
 
     lat = cog[cog$m == 1, ]
     lon = cog[cog$m == 2, ]
@@ -86,7 +93,7 @@ map_cog = function(data_type, category_name, region, ncol, shape, size, fig_outp
     colnames(lonlat) = c("lon", "lat")
 
     lonlat = cbind(lonlat, lat[, c("Year", "Category")])
-    lonlat = lonlat %>% mutate(Year2 = rep(min(DG$Year):max(DG$Year)))
+    lonlat = merge(lonlat, tag, by = c("Category", "Year"))
 
 
     #make COG maps
