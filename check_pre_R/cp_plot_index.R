@@ -6,7 +6,7 @@ require(ggplot2)
 
 
 # please change here --------------------------------------------
-vast_output_dirname = "/Users/Yuki/Dropbox/vastws/multisp"
+vast_output_dirname = "/Users/Yuki/Dropbox/vastws/multisp2"
 fig_output_dirname = "/Users/Yuki/Dropbox/vastws/ggvast"
 
 # vast output
@@ -77,7 +77,7 @@ plot_index = function(vast_index, DG, category_name, fig_output_dirname){
     #multi-species
     trend = c()
     vast_index = vast_index %>% mutate(ntype = as.numeric(as.factor(type)))
-  
+    
     for(j in 1:length(unique(vast_index$Category))){
       #j = 1
       data = vast_index %>% filter(Category == j)
@@ -137,6 +137,7 @@ plot_index = function(vast_index, DG, category_name, fig_output_dirname){
     setwd(dir = fig_output_dirname)
     ggsave(filename = "index.pdf", plot = fig, units = "in", width = 8.27, height = 11.69)
   }
+  message("no problem if you get warning message about geom_errorbar, because Nominal has no error bars")
 }
 
 # run function and make figures ----------------------------------
