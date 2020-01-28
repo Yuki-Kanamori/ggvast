@@ -36,7 +36,7 @@
 ## 例題
 * [VASTのコード](https://gist.github.com/Yuki-Kanamori/42d04d6235170f27e6d7dfce589722a2)    
     [VASTのマニュアル](https://github.com/James-Thorson-NOAA/VAST/blob/master/deprecated_examples/VAST--single-species_example.Rmd) をきちんと動くように修正したもの
-* [作図コード](url)
+
 
 ## インストール方法
 * 準備中
@@ -77,8 +77,3 @@ https://doi.org/10.3354/meps13037
 * Kanamori Y, Takasuka A, Nishijima S, Ichinokawa M, Okamura H (2019) Standardizing abundance index for spawning stock biomass of chub mackerel in the Northwest Pacific. NPFC-2018-TWG CMSA02-WP03
 * 令和元 (2019) 年度ゴマサバ太平洋系群の資源評価    
 http://abchan.fra.go.jp/digests2019/index.html （アップ待ち）
-
-
-
-## 特記事項
-* ** ggvast は業務外の時間にパッケージ開発について学び作成しているもの（単なる趣味）です**
