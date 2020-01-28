@@ -11,7 +11,7 @@ map_cog(
   ncol,
   shape,
   size,
-  map_output_dirname
+  fig_output_dirname
 )
 }
 \arguments{
@@ -27,7 +27,7 @@ map_cog(
 
 \item{size}{size of shape}
 
-\item{map_output_dirname}{directory for output}
+\item{fig_output_dirname}{directory for output}
 }
 \description{
 plot the COG om map using ggplot2. category names, axis names, font size and plot shape can change.

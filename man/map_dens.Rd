@@ -4,7 +4,7 @@
 \alias{map_dens}
 \title{Plot the estimated density on map}
 \usage{
-map_dens(data, region, scale_name, ncol, shape, size, map_output_dirname)
+map_dens(data, region, scale_name, ncol, shape, size, fig_output_dirname)
 }
 \arguments{
 \item{data}{dataframe made by get_dens function}
@@ -19,7 +19,7 @@ map_dens(data, region, scale_name, ncol, shape, size, map_output_dirname)
 
 \item{size}{size of shape}
 
-\item{map_output_dirname}{output directory}
+\item{fig_output_dirname}{output directory}
 }
 \description{
 plot the estimated density om map by species using ggplot2. scale name, plot shape, and size of plot shape can change.

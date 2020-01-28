@@ -7,7 +7,7 @@
 #' @param ncol number of figures in line side by side. max is no. of "Category"
 #' @param shape shape of COG point
 #' @param size size of shape
-#' @param map_output_dirname directory for output
+#' @param fig_output_dirname directory for output
 #' @importFrom dplyr distinct
 #' @importFrom dplyr select
 #' @importFrom rgdal project
@@ -21,7 +21,7 @@
 #' @export
 
 
-map_cog = function(data_type, category_name, region, ncol, shape, size, map_output_dirname){
+map_cog = function(data_type, category_name, region, ncol, shape, size, fig_output_dirname){
   if(data_type == "VAST"){
     # make COG Table
     ### this code is from plot_range_index() in FishStatsUtils ###
@@ -90,7 +90,7 @@ map_cog = function(data_type, category_name, region, ncol, shape, size, map_outp
 
 
     #make COG maps
-    setwd(dir = map_output_dirname)
+    setwd(dir = fig_output_dirname)
     map = ggplot() + coord_fixed() + xlab("Longitude") + ylab("Latitude")
     world_map = map_data("world")
     region2 = subset(world_map, world_map$region == region)

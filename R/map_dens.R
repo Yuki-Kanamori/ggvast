@@ -7,7 +7,7 @@
 #' @param ncol number of figures in line side by side. max is no. of "Category"
 #' @param shape shape of COG point
 #' @param size size of shape
-#' @param map_output_dirname output directory
+#' @param fig_output_dirname output directory
 #' @importFrom dplyr filter
 #' @importFrom ggplot2 ggsave
 #' @import maps
@@ -17,8 +17,8 @@
 #' @import magrittr
 #'
 #' @export
-map_dens = function(data, region, scale_name, ncol, shape, size, map_output_dirname){
-  setwd(dir = map_output_dirname)
+map_dens = function(data, region, scale_name, ncol, shape, size, fig_output_dirname){
+  setwd(dir = fig_output_dirname)
 
   #plot the data from VAST
   if("category_name" %in% names(data)){
