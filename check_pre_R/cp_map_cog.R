@@ -5,133 +5,144 @@ require(maps)
 require(mapdata)
 require(tidyverse)
 require(ggplot2)
-require(FishStatsUtils)
-#require(SpatialDeltaGLMM) #if you use
+require(TMB)
+
+
+# load data -----------------------------------------------------
+vast_output_dirname = "/Users/Yuki/Dropbox/saVAST_egg/test"
+setwd(dir = vast_output_dirname)
+load("Save.RData")
+DG = read.csv("Data_Geostat.csv")
+summary(DG)
 
 # please change here --------------------------------------------
 ### single species
-vast_output_dirname = "/Users/Yuki/Dropbox/saVAST_egg/vast2019-11-11_lnorm_log100chub_fixed"
-data_type = c("VAST", "nominal")[1]
+data_type = c("VAST", "nominal")[2]
 category_name = c("spotted") #カテゴリーの名前（魚種名や銘柄など）　nominalの場合はNULL
 unique(map_data("world")$region)
 region = "Japan" #作図する地域を選ぶ
 ncol = 5 #横にいくつ図を並べるか（最大数 = カテゴリー数）
-shape = 16 #16はclosed dot（他はhttps://subscription.packtpub.com/book/big_data_and_business_intelligence/9781788398312/2/ch02lvl1sec16/plotting-a-shape-reference-palette-for-ggplot2を参照）
+shape = 16 #16はclosed dot
 size = 1.9 #shapeの大きさ
-package = c("SpatialDeltaGLMM", "FishStatsUtils")[2]
-map_output_dirname = "/Users/Yuki/Dropbox/vastws"
-fileEncoding = "CP932"
+map_output_dirname = "/Users/Yuki/Dropbox/vastws/ggvast"
+use_biascorr = TRUE
 
 ### multi species
-vast_output_dirname = "/Users/Yuki/Dropbox/iwac/iwac_MacPro/vast2019-07-19_lnorm_log100sardine"
 data_type = c("VAST", "nominal")[1]
-category_name = c("January","February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December") #カテゴリーの名前（魚種名や銘柄など）　nominalの場合はNULL
+levels(DG$spp)
+category_name = c() #カテゴリーの名前（魚種名や銘柄など）　nominalの場合はNULL
 unique(map_data("world")$region)
 region = "Japan" #作図する地域を選ぶ
 ncol = 5 #横にいくつ図を並べるか（最大数 = カテゴリー数）
-shape = 16 #16はclosed dot（他はhttps://subscription.packtpub.com/book/big_data_and_business_intelligence/9781788398312/2/ch02lvl1sec16/plotting-a-shape-reference-palette-for-ggplot2を参照）
+shape = 16 #16はclosed dot
 size = 1.9 #shapeの大きさ
-package = c("SpatialDeltaGLMM", "FishStatsUtils")[2]
 map_output_dirname = "/Users/Yuki/Dropbox/vastws"
-fileEncoding = "CP932"
 
 
-# load data -----------------------------------------------------
-setwd(dir = vast_output_dirname)
-load("Save.RData")
-DG = read.csv("Data_Geostat.csv")
-
-setwd(dir = vast_output_dirname)
-load("Save.RData")
-DG = read.csv("Data_Geostat_sar.csv")
-
-# make function -------------------------------
-# !!! DO NOT CHANGE HERE !!! ------------------------------------
-map_cog = function(data_type, category_name, region, ncol, shape, size, package, map_output_dirname, fileEncoding){
-
-  setwd(dir = map_output_dirname)
-  nyear_set = seq(min(DG$Year), max(DG$Year))
-
-  #VAST data
+# function ------------------------------------------------------
+map_cog = function(data_type, category_name, region, ncol, shape, size, map_output_dirname){
   if(data_type == "VAST"){
-    #get the COG information
-    if(package == "SpatialDeltaGLMM"){
-      COG = SpatialDeltaGLMM::Plot_range_shifts(Report = Save$Report,
-                                                TmbData = Save$TmbData,
-                                                Sdreport = Save$Opt$SD,
-                                                Znames = colnames(Save$TmbData$Z_xm),
-                                                PlotDir = vast_output_dirname,
-                                                use_biascorr = TRUE,
-                                                Year_Set = nyear_set,
-                                                category_names = category_name)$COG_Table
+    # make COG Table
+    ### this code is from plot_range_index() in FishStatsUtils ###
+    Sdreport = Save[["Opt"]][["SD"]]
+    if("ln_Index_cyl" %in% rownames(TMB::summary.sdreport(Sdreport))){
+      # VAST Version >= 2.0.0
+      CogName = "mean_Z_cym"
+      EffectiveName = "effective_area_cyl"
+      Save[["TmbData"]][["n_t"]] = nrow(Save[["TmbData"]][["t_yz"]])
     }else{
-      COG = FishStatsUtils::plot_range_index(Report = Save$Report,
-                                             TmbData = Save$TmbData,
-                                             Sdreport = Save$Opt$SD,
-                                             Znames = colnames(Save$TmbData$Z_xm),
-                                             PlotDir = vast_output_dirname,
-                                             use_biascorr = TRUE,
-                                             Year_Set = nyear_set,
-                                             category_names = category_name)$COG_Table
+      message("not available because this function does not match your VAST version (VAST Version >= 2.0.0 is needed)")
     }
+    
+    Year_Set = 1:Save$TmbData$n_t
+    Years2Include = 1:Save$TmbData$n_t
+    strata_names = 1:Save$TmbData$n_l
+    category_names = 1:Save$TmbData$n_c
+    Return = list( "Year_Set"=Year_Set )
+    
+    SD = TMB::summary.sdreport(Sdreport)
+    SD_mean_Z_ctm = array( NA, dim=c(unlist(Save$TmbData[c('n_c','n_t','n_m')]),2), dimnames=list(NULL,NULL,NULL,c('Estimate','Std. Error')) )
+    #use_biascorr = TRUE
+    if( use_biascorr==TRUE && "unbiased"%in%names(Sdreport) ){
+      SD_mean_Z_ctm[] = SD[which(rownames(SD)==CogName),c('Est. (bias.correct)','Std. Error')]
+    }
+    if( !any(is.na(SD_mean_Z_ctm)) ){
+      message("Using bias-corrected estimates for center of gravity...")
+    }else{
+      message("Not using bias-corrected estimates for center of gravity...")
+      SD_mean_Z_ctm[] = SD[which(rownames(SD)==CogName),c('Estimate','Std. Error')]
+    }
+    
+    COG_Table = NULL
+    for( cI in 1:Save$TmbData$n_c ){
+      for( mI in 1:dim(SD_mean_Z_ctm)[[3]]){
+        Tmp = cbind("m"=mI, "Year"=Year_Set, "COG_hat"=SD_mean_Z_ctm[cI,,mI,'Estimate'], "SE"=SD_mean_Z_ctm[cI,,mI,'Std. Error'])
+        if( TmbData$n_c>1 ) Tmp = cbind( "Category"=category_names[cI], Tmp)
+        COG_Table = rbind(COG_Table, Tmp)
+      }}
+    ### end the code form plot_range_index() in FishStatsUtils ###
+    
+    
+    setwd(dir = vast_output_dirname)
+    write.csv(COG_Table, "COG_Table.csv")
+    
+    
+    #UTM to longitude and latitude
+    #year_set = DG %>% select(Year) %>% distinct(Year, .keep_all = T)
+    #cog = read.csv("COG_Table.csv")
+    cog = COG_Table
+    nyear_set = seq(min(DG$Year), max(DG$Year))
+    tag = data.frame(Year = rep(1:length(unique(DG$Year))), Year2 = rep(min(DG$Year):max(DG$Year), each = length(category_name)), Category = rep(category_name))
+    
+    if(length(unique(category_name)) == 1){
+      cog = cog %>% data.frame() %>% mutate(Category = category_name)
+    }
+    
+    head(cog)
+    head(tag)
+    cog = merge(cog, tag, by = c("Category", "Year")) %>% arrange(Year)
+    
+    lat = cog[cog$m == 1, ]
+    lon = cog[cog$m == 2, ]
+    x = lat$COG_hat*1000
+    y = lon$COG_hat*1000
+    xy = cbind(x,y)
+    zone = unique(DG$zone)
+    lonlat = data.frame(project(xy, paste0("+proj=utm +zone=", zone, " ellps=WGS84"), inv = TRUE))
+    colnames(lonlat) = c("lon", "lat")
+    
+    lonlat = cbind(lonlat, lat[, c("Year", "Category")])
+    lonlat = lonlat %>% mutate(Year2 = rep(min(DG$Year):max(DG$Year)))
+    
+    
+    #make COG maps
+    setwd(dir = map_output_dirname)
+    map = ggplot() + coord_fixed() + xlab("Longitude") + ylab("Latitude")
+    world_map = map_data("world")
+    region2 = subset(world_map, world_map$region == region)
+    local_map = map + geom_polygon(data = region2, aes(x = long, y = lat, group = group), colour = "black", fill = "white") + coord_map(xlim = c(min(lonlat$lon)-1, max(lonlat$lon)+1), ylim = c(min(lonlat$lat)-1, max(lonlat$lat)+1))
+    th = theme(panel.grid.major = element_blank(),
+               panel.grid.minor = element_blank(),
+               axis.text.x = element_text(size = rel(1.5)),
+               axis.text.y = element_text(size = rel(1.5)),
+               axis.title.x = element_text(size = rel(1.5)),
+               axis.title.y = element_text(size = rel(1.5)),
+               legend.title = element_text(size = 13))
+    p = geom_point(data = lonlat, aes(x = lon, y = lat, colour = Year2), shape = shape, size = size)
+    f = facet_wrap( ~ Category, ncol = ncol)
+    c = scale_colour_gradientn(colours = c("black", "blue", "cyan", "green", "yellow", "orange", "red", "darkred"))
+    labs = labs(x = "Longitude", y = "Latitude", colour = "Year")
+    
+    if(length(unique(category_name)) == 1){
+      fig = local_map+theme_bw()+th+p+c+labs
+    }else{
+      fig = local_map+theme_bw()+th+p+f+c+labs
+    }
+    ggsave(filename = "map_cog.pdf", plot = fig, units = "in", width = 11.69, height = 8.27)
   }
-  setwd(dir = vast_output_dirname)
-  write.csv(COG, "COG_Table.csv", fileEncoding = fileEncoding)
-
-  cog = read.csv("COG_Table.csv")
-
-  #UTM to longitude and latitude
-  #year_set = DG %>% select(Year) %>% distinct(Year, .keep_all = T)
-  tag = data.frame(rep(min(DG$Year):max(DG$Year), each = length(category_name)))
-  #tag = data.frame(rep(year_set, each = length(category_name)))
-  tag$Category = rep(category_name)
-  colnames(tag) = c("Year", "Category")
-
-  if(length(unique(category_name)) == 1){
-    cog = cbind(cog, Category = category_name)
-  }
-
-  head(cog)
-  head(tag)
-  cog = merge(cog, tag, by = c("Category", "Year"))
-
-  lat = cog[cog$m == 1, ]
-  lon = cog[cog$m == 2, ]
-  x = lat$COG_hat*1000
-  y = lon$COG_hat*1000
-  xy = cbind(x,y)
-  zone = unique(DG$zone)
-  lonlat = data.frame(project(xy, paste0("+proj=utm +zone=", zone, " ellps=WGS84"), inv = TRUE))
-  colnames(lonlat) = c("lon", "lat")
-  lonlat = cbind(lonlat, lat[, c("Year", "Category")])
-
-
-  #make COG maps
-  setwd(dir = map_output_dirname)
-  map = ggplot() + coord_fixed() + xlab("Longitude") + ylab("Latitude")
-  world_map = map_data("world")
-  region2 = subset(world_map, world_map$region == region)
-  local_map = map + geom_polygon(data = region2, aes(x = long, y = lat, group = group), colour = "black", fill = "white") + coord_map(xlim = c(min(lonlat$lon)-1, max(lonlat$lon)+1), ylim = c(min(lonlat$lat)-1, max(lonlat$lat)+1))
-  th = theme(panel.grid.major = element_blank(),
-             panel.grid.minor = element_blank(),
-             axis.text.x = element_text(size = rel(1.5)),
-             axis.text.y = element_text(size = rel(1.5)),
-             axis.title.x = element_text(size = rel(1.5)),
-             axis.title.y = element_text(size = rel(1.5)),
-             legend.title = element_text(size = 13))
-  p = geom_point(data = lonlat, aes(x = lon, y = lat, colour = Year), shape = shape, size = size)
-  f = facet_wrap( ~ Category, ncol = ncol)
-  c = scale_colour_gradientn(colours = c("black", "blue", "cyan", "green", "yellow", "orange", "red", "darkred"))
-  labs = labs(x = "Longitude", y = "Latitude", colour = "Year")
-
-  if(length(unique(category_name)) == 1){
-    fig = local_map+theme_bw()+th+p+c+labs
-  }else{
-    fig = local_map+theme_bw()+th+p+f+c+labs
-  }
-  ggsave(filename = "map_cog.pdf", plot = fig, units = "in", width = 11.69, height = 8.27)
-
-
+  
+  
+  
   #nominal data
   if(data_type == "nominal"){
     #make COG maps
@@ -150,7 +161,7 @@ map_cog = function(data_type, category_name, region, ncol, shape, size, package,
     f = facet_wrap( ~ spp, ncol = ncol)
     c = scale_colour_gradientn(colours = c("black", "blue", "cyan", "green", "yellow", "orange", "red", "darkred"))
     labs = labs(x = "Longitude", y = "Latitude", colour = "Year")
-
+    
     if(length(unique(cog_nom$spp)) == 1){
       fig_nom =local_map+theme_bw()+th+p+c+labs
     }else{
@@ -161,6 +172,7 @@ map_cog = function(data_type, category_name, region, ncol, shape, size, package,
 }
 
 
+
 # run function and make figures ----------------------------------
 map_cog(data_type = data_type,
         category_name = category_name,
@@ -168,6 +180,4 @@ map_cog(data_type = data_type,
         ncol = ncol,
         shape = shape,
         size = size,
-        package = package,
-        map_output_dirname = map_output_dirname,
-        fileEncoding = fileEncoding)
+        map_output_dirname = map_output_dirname)
