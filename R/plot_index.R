@@ -1,6 +1,6 @@
-#' Get the estimated density in each knot and make dataframe
+#' Compare the nominal and standardized index
 #'
-#' Get the estimated density in each knot from Save.RData.
+#' make a figure
 #' @param vast_index Standardized data
 #' @param DG nominal data
 #' @param category_name category name
