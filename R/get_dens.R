@@ -1,7 +1,7 @@
 #' Get the estimated density in each knot and make dataframe
 #'
 #' Get the estimated density in each knot from Save.RData.
-#' @param category_name change numeric category to category name
+#' @param category_name category name
 #' @importFrom dplyr mutate
 #' @importFrom dplyr rename
 #' @importFrom dplyr distinct

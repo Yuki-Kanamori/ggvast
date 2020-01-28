@@ -9,16 +9,16 @@ require(TMB)
 
 
 # load data -----------------------------------------------------
-vast_output_dirname = "/Users/Yuki/Dropbox/saVAST_egg/test"
+vast_output_dirname = "/Users/Yuki/Dropbox/vastws/sakanaC_od"
 setwd(dir = vast_output_dirname)
 load("Save.RData")
 DG = read.csv("Data_Geostat.csv")
 summary(DG)
 
 # please change here --------------------------------------------
-### single species
-data_type = c("VAST", "nominal")[2]
-category_name = c("spotted") #カテゴリーの名前（魚種名や銘柄など）　nominalの場合はNULL
+data_type = c("VAST", "nominal")[1]
+levels(DG$spp)
+category_name = c("x") #カテゴリーの名前（魚種名や銘柄など）　nominalの場合はNULL
 unique(map_data("world")$region)
 region = "Japan" #作図する地域を選ぶ
 ncol = 5 #横にいくつ図を並べるか（最大数 = カテゴリー数）
@@ -26,18 +26,6 @@ shape = 16 #16はclosed dot
 size = 1.9 #shapeの大きさ
 map_output_dirname = "/Users/Yuki/Dropbox/vastws/ggvast"
 use_biascorr = TRUE
-
-### multi species
-data_type = c("VAST", "nominal")[1]
-levels(DG$spp)
-category_name = c() #カテゴリーの名前（魚種名や銘柄など）　nominalの場合はNULL
-unique(map_data("world")$region)
-region = "Japan" #作図する地域を選ぶ
-ncol = 5 #横にいくつ図を並べるか（最大数 = カテゴリー数）
-shape = 16 #16はclosed dot
-size = 1.9 #shapeの大きさ
-map_output_dirname = "/Users/Yuki/Dropbox/vastws"
-
 
 # function ------------------------------------------------------
 map_cog = function(data_type, category_name, region, ncol, shape, size, map_output_dirname){

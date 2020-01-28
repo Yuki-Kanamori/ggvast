@@ -25,7 +25,6 @@ size = 1.9 #shapeの大きさ
 map_output_dirname = "/Users/Yuki/Dropbox/vastws/ggvast"
 
 # make function -------------------------------
-# !!! DO NOT CHANGE HERE !!! ------------------------------------
 map_dens = function(data, region, scale_name, ncol, shape, size, map_output_dirname){
   setwd(dir = map_output_dirname)
   

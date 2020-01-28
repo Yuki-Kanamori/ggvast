@@ -1,31 +1,20 @@
-
-# packages ------------------------------------------------------
-require(dplyr)
-require(plyr)
-require(ggplot2)
-
-
-# please change here --------------------------------------------
-vast_output_dirname = "/Users/Yuki/Dropbox/vastws/multisp2"
-fig_output_dirname = "/Users/Yuki/Dropbox/vastws/ggvast"
-
-# vast output
-setwd(dir = vast_output_dirname)
-vast_index = read.csv("Table_for_SS3.csv") %>% mutate(type = "Standardized")
-
-#ノミナルデータ
-DG = read.csv("Data_Geostat.csv")
-levels(DG$spp) #単一種の時はNULL
-category_name = c("x", "y", "z") #カテゴリーの名前（魚種名や銘柄など）
+#' Get the estimated density in each knot and make dataframe
+#'
+#' Get the estimated density in each knot from Save.RData.
+#' @param vast_index Standardized data
+#' @param DG nominal data
+#' @param category_name category name
+#' @param fig_output_dirname directory for output figure
+#' @importFrom dplyr mutate
+#' @importFrom dplyr select
+#' @importFrom dplyr rename
+#' @importFrom plyr ddply
+#' @importFrom magrittr %>%
+#' @import magrittr
+#' @import ggplot2
+#' @export
 
 
-# vastの結果が複数ある場合
-setwd(dir = ////)
-vast_index2 = read.csv("Table_for_SS3.csv") %>% mutate(type = "Standardized2") #typeの名前は適宜変更
-vast_index = rbind(vast_index, vast_index2)
-
-
-# make function -------------------------------
 plot_index = function(vast_index, DG, category_name, fig_output_dirname){
   #single-species
   if(!("spp" %in% names(DG))){
@@ -34,22 +23,22 @@ plot_index = function(vast_index, DG, category_name, fig_output_dirname){
     vast_index = vast_index %>% mutate(ntype = as.numeric(as.factor(type)))
     for(i in 1:length(unique(vast_index$ntype))){
       data = vast_index %>% filter(ntype == i)
-      
+
       data = data %>% mutate(scaled = Estimate_metric_tons/mean(Estimate_metric_tons))
       conf = exp(qnorm(0.975)*sqrt(log(1+(data$SD_log)^2)))
       data = data %>% mutate(kukan_u = data$scaled*conf, kukan_l = data$scaled/conf)
       data = data %>% mutate(kukan_u2 = abs(scaled - kukan_u), kukan_l2 = scaled - kukan_l)
-      
+
       trend = rbind(trend, data)
     }
     trend = trend %>% select(Year, kukan_u2, kukan_l2, type, scaled)
-    
+
     #normarize and calculate confidence interval
     nominal = ddply(DG, .(Year), summarize, mean = mean(Catch_KG))
     nominal = nominal %>% mutate(scaled = nominal$mean/mean(nominal$mean), type = "Nominal", kukan_u2 = NA, kukan_l2 = NA)
     nominal = nominal %>% select(Year, kukan_u2, kukan_l2, type, scaled)
     trend = rbind(trend, nominal)
-    
+
     #plot
     # figure --------------------------------------------------------
     g = ggplot(trend, aes(x = Year, y = scaled, colour = type))
@@ -70,34 +59,34 @@ plot_index = function(vast_index, DG, category_name, fig_output_dirname){
     fig = g+p+e+l+lb+theme_bw()+th
     setwd(dir = fig_output_dirname)
     ggsave(filename = "index.pdf", plot = fig, units = "in", width = 8.27, height = 11.69)
-    
+
   }else{
-    
+
     #multi-species
     trend = c()
     vast_index = vast_index %>% mutate(ntype = as.numeric(as.factor(type)))
-    
+
     for(j in 1:length(unique(vast_index$Category))){
       #j = 1
       data = vast_index %>% filter(Category == j)
-      
+
       #calculate confidence interval
       for(i in 1:length(unique(vast_index$ntype))){
         #i = 1
         data = vast_index %>% filter(ntype == i)
-        
+
         data = data %>% mutate(scaled = Estimate_metric_tons/mean(Estimate_metric_tons))
         conf = exp(qnorm(0.975)*sqrt(log(1+(data$SD_log)^2)))
         data = data %>% mutate(kukan_u = data$scaled*conf, kukan_l = data$scaled/conf)
         data = data %>% mutate(kukan_u2 = abs(scaled - kukan_u), kukan_l2 = scaled - kukan_l)
-        
+
         trend = rbind(trend, data)
       }
     }
     trend = trend %>% select(Year, kukan_u2, kukan_l2, type, scaled, Category)
     tag = data.frame(Category = unique(trend$Category), category2 = category_name)
     trend = merge(trend, tag, by = "Category")
-    
+
     #normarize and calculate confidence interval
     DG2 = ddply(DG, .(Year, spp), summarize, mean = mean(Catch_KG))
     DG2 = DG2 %>% mutate(nspp = as.numeric(as.factor(spp)))
@@ -107,13 +96,13 @@ plot_index = function(vast_index, DG, category_name, fig_output_dirname){
       data2 = DG2 %>% filter(nspp == i)
       data2 = data2 %>% mutate(scaled = data2$mean/mean(data2$mean), type = "Nominal", kukan_u2 = NA, kukan_l2 = NA)
       data2 = data2 %>% select(Year, kukan_u2, kukan_l2, type, scaled, nspp)
-      
+
       nominal = rbind(nominal, data2)
     }
     nominal = nominal %>% dplyr::rename(Category = nspp)
     nominal = merge(nominal, tag, by = "Category")
     trend = rbind(trend, nominal)
-    
+
     #plot
     # figure --------------------------------------------------------
     g = ggplot(trend, aes(x = Year, y = scaled, colour = type))
@@ -138,9 +127,3 @@ plot_index = function(vast_index, DG, category_name, fig_output_dirname){
   }
   message("no problem if you get warning message about geom_errorbar, because Nominal has no error bars")
 }
-
-# run function and make figures ----------------------------------
-plot_index(vast_index = vast_index,
-           DG = DG,
-           category_name = category_name,
-           fig_output_dirname = fig_output_dirname)

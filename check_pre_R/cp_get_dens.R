@@ -12,7 +12,6 @@ category_name = c("x", "y", "z") #カテゴリーの名前（魚種名や銘柄�
 
 
 # make function -------------------------------
-# !!! DO NOT CHANGE HERE !!! ------------------------------------
 get_dens = function(category_name){
   n_c = Save$TmbData$n_c #category (month)
   n_t = Save$TmbData$n_t #year

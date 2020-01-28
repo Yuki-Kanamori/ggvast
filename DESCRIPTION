@@ -1,11 +1,13 @@
 Package: ggvast
 Type: Package
-Title: ggvast can change the axis names, plot COG on map, and transform UTM to latitude/longitude using the VAST outputs
+Title: ggvast is a R package for visualisations of the VAST outputs
 Version: 0.0.0.9000
 Authors@R: person("Yuki", "Kanamori", email = "kana.yuki@fra.affrc.go.jp", role = c("aut", "cre"))
 Maintainer: Yuki Kamamori <kana.yuki@fra.affrc.go.jp>
-Description: ggvast is a R package for visualisations of the VAST outputs
-License: What license is it under?
+Description: ggvast can compare the trends between nominal and standardized index,
+    make data-frame of estimated density in each knot,
+    plot estimated local density on map, and plot COG on map using the VAST outputs
+License: MIT
 Encoding: UTF-8
 LazyData: true
 Depends: R (>= 3.6.1)
@@ -15,10 +17,8 @@ Imports:
     plyr,
     dplyr,
     tidyr,
-    stringr,
     maps,
     mapdata,
-    VAST,
-    FishStatsUtils,
+    TMB,
     rgdal
 RoxygenNote: 7.0.2

@@ -3,10 +3,10 @@
 #' get the lon/lat of COG from nominal data
 #' @param data Data_Geostat
 #'
-#' @importFrom dplyr
 #' @importFrom dplyr filter
 #' @importFrom dplyr select
 #' @importFrom plyr ddply
+#' @import dplyr
 #' @import magrittr
 #'
 #' @export
@@ -27,7 +27,7 @@ get_cog = function(data){
     lat_deno = ddply(dg, .(Year), summarize, deno = sum(Catch_KG))
     cog_lat = merge(lat_nume, lat_deno, by = "Year") %>% mutate(lat = nume/deno) %>% select(Year, lat)
 
-    cog_nominal = merge(cog_lon, cog_lat, by = "Year")
+    cog_nominal = merge(cog_lon, cog_lat, by = "Year") %>% mutate(spp = 1)
   }
 
   #multi-species

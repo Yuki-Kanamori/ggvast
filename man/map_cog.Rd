@@ -4,12 +4,22 @@
 \alias{map_cog}
 \title{Plot the COG on map from VAST output}
 \usage{
-map_cog(category_name, region, labs, ncol, shape, size, package)
+map_cog(
+  data_type,
+  category_name,
+  region,
+  ncol,
+  shape,
+  size,
+  map_output_dirname
+)
 }
 \arguments{
-\item{category_name}{names of each category. set 1 when single-species model}
+\item{data_type}{VAST ot nomical}
 
-\item{labs}{setting of figure. colour is legend}
+\item{category_name}{names of each category}
+
+\item{region}{region of the data. please see require(maps) and unique(map_data("world")$region)}
 
 \item{ncol}{number of figures in line side by side. max is no. of "Category"}
 
@@ -17,9 +27,7 @@ map_cog(category_name, region, labs, ncol, shape, size, package)
 
 \item{size}{size of shape}
 
-\item{package}{Spatial DeltaGLMM or FishStatsUtils}
-
-\item{zone}{no. of UTM which was estimated when "Extrapolation_List" was made}
+\item{map_output_dirname}{directory for output}
 }
 \description{
 plot the COG om map using ggplot2. category names, axis names, font size and plot shape can change.

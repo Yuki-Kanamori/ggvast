@@ -5,22 +5,11 @@ require(dplyr)
 
 
 # please change here --------------------------------------------
-vast_output_dirname = "/Users/Yuki/Dropbox/saVAST_egg/test"
-map_output_dirname = "/Users/Yuki/Dropbox/vastws/ggvast"
-
-vast_output_dirname = "/Users/Yuki/Dropbox/iwac/iwac_MacPro/vast2019-07-19_lnorm_log100sardine"
-map_output_dirname = "/Users/Yuki/Dropbox/vastws"
-
-# load data -----------------------------------------------------
+vast_output_dirname = "/Users/Yuki/Dropbox/vastws/sakanaC_od"
 setwd(dir = vast_output_dirname)
 DG = read.csv("Data_Geostat.csv")
 
-# setwd(dir = vast_output_dirname)
-# DG = read.csv("Data_Geostat_sar.csv") %>% mutate(spp = as.factor(Month)) %>% data.frame()
-# names(DG)
-
 # make function -------------------------------
-# !!! DO NOT CHANGE HERE !!! ------------------------------------
 get_cog = function(data){
   
   #single-species
