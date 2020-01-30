@@ -19,6 +19,7 @@ Imports:
     tidyr,
     maps,
     mapdata,
+    mapproj,
     TMB,
     rgdal
 RoxygenNote: 7.0.2
