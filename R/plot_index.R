@@ -59,7 +59,7 @@ plot_index = function(vast_index, DG, category_name, fig_output_dirname){
       plot.title = element_text(size = rel(1.5))) #タイトル
     fig = g+p+e+l+lb+theme_bw()+th
     setwd(dir = fig_output_dirname)
-    ggsave(filename = "index.pdf", plot = fig, units = "in", width = 8.27, height = 11.69)
+    ggsave(filename = "index.pdf", plot = fig, units = "in", width = 11.69, height = 8.27)
 
   }else{
 
@@ -124,7 +124,7 @@ plot_index = function(vast_index, DG, category_name, fig_output_dirname){
       plot.title = element_text(size = rel(1.5))) #タイトル
     fig = g+p+e+l+f+lb+theme_bw()+th
     setwd(dir = fig_output_dirname)
-    ggsave(filename = "index.pdf", plot = fig, units = "in", width = 8.27, height = 11.69)
+    ggsave(filename = "index.pdf", plot = fig, units = "in", width = 11.69, height = 8.27)
   }
   message("no problem if you get warning message about geom_errorbar, because Nominal has no error bars")
 }
