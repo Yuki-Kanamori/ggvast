@@ -48,7 +48,6 @@ get_dens = function(category_name){
     }
   }
 
-
   est_d = data.frame(est_d)
 
   est_d = est_d %>% mutate(knot_i = rep(1:n_x, n_c), category = rep(1:n_c, each = n_x))
