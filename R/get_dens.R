@@ -15,6 +15,9 @@ get_dens = function(category_name){
   n_c = Save$TmbData$n_c #category (month)
   n_t = Save$TmbData$n_t #year
   n_x = Save$TmbData$n_x #knot
+
+  if (is.null(n_x)) n_x = Save$TmbData$n_g
+
   year_set = DG %>% select(Year) %>% distinct(Year, .keep_all = T)
   latlon_list = DG %>% distinct(knot_i, Lon, Lat, .keep_all = T) %>% select(Lon, Lat, knot_i)
 
@@ -38,6 +41,14 @@ get_dens = function(category_name){
       est_d = rbind(est_d, temp)
     }
   }
+  if ("D_gcy" %in% names(Save$Report)) {
+    for (i in 1:n_c) {
+      temp = log(Save$Report$D_gcy[, i, ])
+      est_d = rbind(est_d, temp)
+    }
+  }
+
+
   est_d = data.frame(est_d)
 
   est_d = est_d %>% mutate(knot_i = rep(1:n_x, n_c), category = rep(1:n_c, each = n_x))
