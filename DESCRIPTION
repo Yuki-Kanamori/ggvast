@@ -1,7 +1,7 @@
 Package: ggvast
 Type: Package
 Title: ggvast is a R package for visualisations of the VAST outputs
-Version: 1.1.0.9000
+Version: 1.1.9000
 Authors@R: person("Yuki", "Kanamori", email = "kana.yuki@fra.affrc.go.jp", role = c("aut", "cre"))
 Maintainer: Yuki Kamamori <kana.yuki@fra.affrc.go.jp>
 Description: ggvast can compare the trends between nominal and standardized index,
