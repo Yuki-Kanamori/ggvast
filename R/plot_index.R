@@ -34,7 +34,7 @@ plot_index = function(vast_index, DG, category_name, fig_output_dirname){
     }
     trend = trend %>% select(Year, kukan_u2, kukan_l2, type, scaled)
 
-    #normarize and calculate confidence interval
+    #normalize and calculate confidence interval
     nominal = ddply(DG, .(Year), summarize, mean = mean(Catch_KG))
     nominal = nominal %>% mutate(scaled = nominal$mean/mean(nominal$mean), type = "Nominal", kukan_u2 = NA, kukan_l2 = NA)
     nominal = nominal %>% select(Year, kukan_u2, kukan_l2, type, scaled)
@@ -88,7 +88,7 @@ plot_index = function(vast_index, DG, category_name, fig_output_dirname){
     tag = data.frame(Category = unique(trend$Category), category2 = category_name)
     trend = merge(trend, tag, by = "Category")
 
-    #normarize and calculate confidence interval
+    #normalize and calculate confidence interval
     DG2 = ddply(DG, .(Year, spp), summarize, mean = mean(Catch_KG))
     DG2 = DG2 %>% mutate(nspp = as.numeric(as.factor(spp)))
     #こっから変
