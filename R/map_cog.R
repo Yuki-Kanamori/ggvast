@@ -21,7 +21,7 @@
 #' @export
 
 
-map_cog = function(data_type, category_name, region, ncol, shape, size, zoom, fig_output_dirname){
+map_cog = function(data_type, category_name, region, ncol, shape, size, zoom_out_lon, zoom_out_lat, fig_output_dirname){
   if(data_type == "VAST"){
     # make COG Table
     ### this code is from plot_range_index() in FishStatsUtils ###
