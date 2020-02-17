@@ -17,7 +17,7 @@
 #' @import magrittr
 #'
 #' @export
-map_dens = function(data, region, scale_name, ncol, shape, size, fig_output_dirname){
+map_dens = function(data, region, scale_name, ncol, shape, size, zoom, fig_output_dirname){
   setwd(dir = fig_output_dirname)
 
   #plot the data from VAST
@@ -25,7 +25,7 @@ map_dens = function(data, region, scale_name, ncol, shape, size, fig_output_dirn
     map = ggplot() + coord_fixed() + xlab("Longitude") + ylab("Latitude")
     world_map = map_data("world")
     region2 = subset(world_map, world_map$region == region)
-    local_map = map + geom_polygon(data = region2, aes(x = long, y = lat, group = group), colour = "black", fill = "white") + coord_map(xlim = c(min(data$lon)-1, max(data$lon)+1), ylim = c(min(data$lat)-1, max(data$lat)+1))
+    local_map = map + geom_polygon(data = region2, aes(x = long, y = lat, group = group), colour = "black", fill = "white") + coord_map(xlim = c((min(data$lon)-1)*zoom, (max(data$lon)+1)*zoom), ylim = c((min(data$lat)-1)*zoom, (max(data$lat)+1)*zoom))
     th = theme(panel.grid.major = element_blank(),
                panel.grid.minor = element_blank(),
                axis.text.x = element_blank(),
@@ -61,7 +61,7 @@ map_dens = function(data, region, scale_name, ncol, shape, size, fig_output_dirn
     map = ggplot() + coord_fixed() + xlab("Longitude") + ylab("Latitude")
     world_map = map_data("world")
     region2 = subset(world_map, world_map$region == region)
-    local_map = map + geom_polygon(data = region2, aes(x = long, y = lat, group = group), colour = "black", fill = "white") + coord_map(xlim = c(min(data$Lon)-1, max(data$Lon)+1), ylim = c(min(data$Lat)-1, max(data$Lat)+1))
+    local_map = map + geom_polygon(data = region2, aes(x = long, y = lat, group = group), colour = "black", fill = "white") + coord_map(xlim = c((min(data$lon)-1)*zoom, (max(data$lon)+1)*zoom), ylim = c((min(data$lat)-1)*zoom, (max(data$lat)+1)*zoom))
     th = theme(panel.grid.major = element_blank(),
                panel.grid.minor = element_blank(),
                #axis.text.x = element_text(size = rel(0.7), angle = 90),
