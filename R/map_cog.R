@@ -130,7 +130,7 @@ map_cog = function(data_type, category_name, region, ncol, shape, size, fig_outp
     map = ggplot() + coord_fixed() + xlab("Longitude") + ylab("Latitude")
     world_map = map_data("world")
     region2 = subset(world_map, world_map$region == region)
-    local_map = map + geom_polygon(data = region2, aes(x = long, y = lat, group = group), colour = "gray 50", fill = "gray 50") + coord_map(xlim = c(min(cog_nom$lon)-1, max(cog_nom$lon)+1), ylim = c(min(cog_nom$lat)-1, max(cog_nom$lat)+1))
+    local_map = map + geom_polygon(data = region2, aes(x = long, y = lat, group = group), colour = "black", fill = "white") + coord_map(xlim = c(min(cog_nom$lon)-1, max(cog_nom$lon)+1), ylim = c(min(cog_nom$lat)-1, max(cog_nom$lat)+1))
     th = theme(panel.grid.major = element_blank(),
                panel.grid.minor = element_blank(),
                axis.text.x = element_text(size = rel(1.5)),
