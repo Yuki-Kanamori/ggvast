@@ -7,6 +7,8 @@
 #' @param ncol number of figures in line side by side. max is no. of "Category"
 #' @param shape shape of COG point
 #' @param size size of shape
+#' @param zoom_in_lon zoom in on the map if 1<, zoom out on the map if 1>, and 1 is the same size
+#' @param zoom_in_lat zoom in on the map if 1<, zoom out on the map if 1>, and 1 is the same size
 #' @param fig_output_dirname directory for output
 #' @importFrom dplyr distinct
 #' @importFrom dplyr select
