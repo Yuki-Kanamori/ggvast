@@ -101,7 +101,7 @@ map_cog = function(data_type, category_name, region, ncol, shape, size, zoom, fi
     map = ggplot() + coord_fixed() + xlab("Longitude") + ylab("Latitude")
     world_map = map_data("world")
     region2 = subset(world_map, world_map$region == region)
-    local_map = map + geom_polygon(data = region2, aes(x = long, y = lat, group = group), colour = "black", fill = "white") + coord_map(xlim = c((min(data$lon)-1)*zoom, (max(data$lon)+1)*zoom), ylim = c((min(data$lat)-1)*zoom, (max(data$lat)+1)*zoom))
+    local_map = map + geom_polygon(data = region2, aes(x = long, y = lat, group = group), colour = "black", fill = "white") + coord_map(xlim = c(min(data$lon)-1*zoom_out_lon, max(data$lon)+1*zoom_out_lon), ylim = c(min(data$lat)-1*zoom_out_lat, max(data$lat)+1*zoom_out_lat))
     th = theme(panel.grid.major = element_blank(),
                panel.grid.minor = element_blank(),
                axis.text.x = element_text(size = rel(1.5)),
@@ -130,7 +130,7 @@ map_cog = function(data_type, category_name, region, ncol, shape, size, zoom, fi
     map = ggplot() + coord_fixed() + xlab("Longitude") + ylab("Latitude")
     world_map = map_data("world")
     region2 = subset(world_map, world_map$region == region)
-    local_map = map + geom_polygon(data = region2, aes(x = long, y = lat, group = group), colour = "black", fill = "white") + coord_map(xlim = c((min(data$lon)-1)*zoom, (max(data$lon)+1)*zoom), ylim = c((min(data$lat)-1)*zoom, (max(data$lat)+1)*zoom))
+    local_map = map + geom_polygon(data = region2, aes(x = long, y = lat, group = group), colour = "black", fill = "white") + coord_map(xlim = c(min(data$lon)-1*zoom_out_lon, max(data$lon)+1*zoom_out_lon), ylim = c(min(data$lat)-1*zoom_out_lat, max(data$lat)+1*zoom_out_lat))
     th = theme(panel.grid.major = element_blank(),
                panel.grid.minor = element_blank(),
                axis.text.x = element_text(size = rel(1.5)),
