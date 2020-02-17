@@ -21,7 +21,7 @@
 #' @export
 
 
-map_cog = function(data_type, category_name, region, ncol, shape, size, zoom_out_lon, zoom_out_lat, fig_output_dirname){
+map_cog = function(data_type, category_name, region, ncol, shape, size, zoom_in_lon, zoom_in_lat, fig_output_dirname){
   if(data_type == "VAST"){
     # make COG Table
     ### this code is from plot_range_index() in FishStatsUtils ###
@@ -101,7 +101,7 @@ map_cog = function(data_type, category_name, region, ncol, shape, size, zoom_out
     map = ggplot() + coord_fixed() + xlab("Longitude") + ylab("Latitude")
     world_map = map_data("world")
     region2 = subset(world_map, world_map$region == region)
-    local_map = map + geom_polygon(data = region2, aes(x = long, y = lat, group = group), colour = "black", fill = "white") + coord_map(xlim = c(min(data$lon)-1*zoom_out_lon, max(data$lon)+1*zoom_out_lon), ylim = c(min(data$lat)-1*zoom_out_lat, max(data$lat)+1*zoom_out_lat))
+    local_map = map + geom_polygon(data = region2, aes(x = long, y = lat, group = group), colour = "black", fill = "white") + coord_map(xlim = c(min(data$lon)-1*zoom_in_lon*(-1), max(data$lon)+1*zoom_in_lon*(-1)), ylim = c(min(data$lat)-1*zoom_in_lat*(-1), max(data$lat)+1*zoom_in_lat*(-1)))
     th = theme(panel.grid.major = element_blank(),
                panel.grid.minor = element_blank(),
                axis.text.x = element_text(size = rel(1.5)),
@@ -130,7 +130,7 @@ map_cog = function(data_type, category_name, region, ncol, shape, size, zoom_out
     map = ggplot() + coord_fixed() + xlab("Longitude") + ylab("Latitude")
     world_map = map_data("world")
     region2 = subset(world_map, world_map$region == region)
-    local_map = map + geom_polygon(data = region2, aes(x = long, y = lat, group = group), colour = "black", fill = "white") + coord_map(xlim = c(min(data$lon)-1*zoom_out_lon, max(data$lon)+1*zoom_out_lon), ylim = c(min(data$lat)-1*zoom_out_lat, max(data$lat)+1*zoom_out_lat))
+    local_map = map + geom_polygon(data = region2, aes(x = long, y = lat, group = group), colour = "black", fill = "white") + coord_map(xlim = c(min(data$lon)-1*zoom_in_lon*(-1), max(data$lon)+1*zoom_in_lon*(-1)), ylim = c(min(data$lat)-1*zoom_in_lat*(-1), max(data$lat)+1*zoom_in_lat*(-1)))
     th = theme(panel.grid.major = element_blank(),
                panel.grid.minor = element_blank(),
                axis.text.x = element_text(size = rel(1.5)),
