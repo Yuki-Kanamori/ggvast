@@ -34,8 +34,8 @@
 ## 例題
 [vast_workshop2020](https://github.com/ShotaNishijima/vast_workshop2020/tree/master/ws用のスクリプトとデータ)
 * ggvastのコードはpart2.R
-* **VASTを動かした時，一部の情報を適宜保存していないとggvastは使えない．** 
-* Thorsonのコードを使って解析している人は，pat1.Rを参考に一部修正してください
+* **VASTを動かした時，Data_Geostatなどを保存していないとggvastは使えない** 
+* Thorsonのコードを使って解析している人は，pat1.Rを参考に修正する必要がある
 
 
 ## インストール方法
