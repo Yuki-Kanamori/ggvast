@@ -32,8 +32,10 @@
 * ご意見ご要望はissueまで
 
 ## 例題
-* [VASTのコード](https://gist.github.com/Yuki-Kanamori/42d04d6235170f27e6d7dfce589722a2)    
-    [VASTのマニュアル](https://github.com/James-Thorson-NOAA/VAST/blob/master/deprecated_examples/VAST--single-species_example.Rmd) をきちんと動くように修正したもの
+[vast_workshop2020](https://github.com/ShotaNishijima/vast_workshop2020/tree/master/ws用のスクリプトとデータ)
+* ggvastのコードはpart2.R
+* **VASTを動かした時，一部の情報を適宜保存していないとggvastは使えない．** 
+* Thorsonのコードを使って解析している人は，pat1.Rを参考に一部修正してください
 
 
 ## インストール方法
