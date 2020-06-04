@@ -91,7 +91,7 @@ map_cog = function(data_type, category_name, region, ncol, shape, size, zoom_in_
     y = lon$COG_hat*1000
     xy = cbind(x,y)
     zone = unique(DG$zone)
-    lonlat = data.frame(project(xy, paste0("+proj=utm +zone=", zone, " ellps=WGS84"), inv = TRUE))
+    lonlat = data.frame(rgdal::project(xy, paste0("+proj=utm +zone=", zone, " ellps=WGS84"), inv = TRUE))
     colnames(lonlat) = c("lon", "lat")
 
     lonlat = cbind(lonlat, lat[, c("Year", "Category")])
