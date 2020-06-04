@@ -4,7 +4,17 @@
 \alias{map_dens}
 \title{Plot the estimated density on map}
 \usage{
-map_dens(data, region, scale_name, ncol, shape, size, fig_output_dirname)
+map_dens(
+  data,
+  region,
+  scale_name,
+  ncol,
+  shape,
+  size,
+  zoom_in_lon,
+  zoom_in_lat,
+  fig_output_dirname
+)
 }
 \arguments{
 \item{data}{dataframe made by get_dens function}
@@ -18,6 +28,10 @@ map_dens(data, region, scale_name, ncol, shape, size, fig_output_dirname)
 \item{shape}{shape of COG point}
 
 \item{size}{size of shape}
+
+\item{zoom_in_lon}{zoom in on the map if 1<, zoom out on the map if 1>, and 1 is the same size}
+
+\item{zoom_in_lat}{zoom in on the map if 1<, zoom out on the map if 1>, and 1 is the same size}
 
 \item{fig_output_dirname}{output directory}
 }

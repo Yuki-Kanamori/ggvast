@@ -11,6 +11,8 @@ map_cog(
   ncol,
   shape,
   size,
+  zoom_in_lon,
+  zoom_in_lat,
   fig_output_dirname
 )
 }
@@ -26,6 +28,10 @@ map_cog(
 \item{shape}{shape of COG point}
 
 \item{size}{size of shape}
+
+\item{zoom_in_lon}{zoom in on the map if 1<, zoom out on the map if 1>, and 1 is the same size}
+
+\item{zoom_in_lat}{zoom in on the map if 1<, zoom out on the map if 1>, and 1 is the same size}
 
 \item{fig_output_dirname}{directory for output}
 }
