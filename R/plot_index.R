@@ -28,16 +28,15 @@ plot_index = function(vast_index, DG, category_name, fig_output_dirname){
       data = data %>% mutate(scaled = Estimate_metric_tons/mean(Estimate_metric_tons))
       conf = exp(qnorm(0.975)*sqrt(log(1+(data$SD_log)^2)))
       data = data %>% mutate(kukan_u = data$scaled*conf, kukan_l = data$scaled/conf)
-      data = data %>% mutate(kukan_u2 = abs(scaled - kukan_u), kukan_l2 = scaled - kukan_l)
 
       trend = rbind(trend, data)
     }
-    trend = trend %>% select(Year, kukan_u2, kukan_l2, type, scaled)
+    trend = trend %>% select(Year, kukan_u, kukan_l, type, scaled)
 
     #normalize and calculate confidence interval
     nominal = ddply(DG, .(Year), summarize, mean = mean(Catch_KG))
-    nominal = nominal %>% mutate(scaled = nominal$mean/mean(nominal$mean), type = "Nominal", kukan_u2 = NA, kukan_l2 = NA)
-    nominal = nominal %>% select(Year, kukan_u2, kukan_l2, type, scaled)
+    nominal = nominal %>% mutate(scaled = nominal$mean/mean(nominal$mean), type = "Nominal", kukan_u = NA, kukan_l = NA)
+    nominal = nominal %>% select(Year, kukan_u, kukan_l, type, scaled)
     trend = rbind(trend, nominal)
 
     #plot
@@ -45,7 +44,7 @@ plot_index = function(vast_index, DG, category_name, fig_output_dirname){
     g = ggplot(trend, aes(x = Year, y = scaled, colour = type))
     pd = position_dodge(.3)
     p = geom_point(size = 4, aes(colour = type), position = pd)
-    e = geom_errorbar(aes(ymin = scaled - kukan_l2, ymax = scaled + kukan_u2), width = 0.3, size = .7, position = pd)
+    e = geom_errorbar(aes(ymin = scaled - kukan_l, ymax = scaled + kukan_u), width = 0.3, size = .7, position = pd)
     l = geom_line(aes(colour = type), size = 1.5, position = pd)
     lb = labs(x = "Year", y = "Index", color = "Model")
     th = theme(#legend.position = c(0.18, 0.8),
@@ -79,12 +78,11 @@ plot_index = function(vast_index, DG, category_name, fig_output_dirname){
         data = data %>% mutate(scaled = Estimate_metric_tons/mean(Estimate_metric_tons))
         conf = exp(qnorm(0.975)*sqrt(log(1+(data$SD_log)^2)))
         data = data %>% mutate(kukan_u = data$scaled*conf, kukan_l = data$scaled/conf)
-        data = data %>% mutate(kukan_u2 = abs(scaled - kukan_u), kukan_l2 = scaled - kukan_l)
 
         trend = rbind(trend, data)
       }
     }
-    trend = trend %>% select(Year, kukan_u2, kukan_l2, type, scaled, Category)
+    trend = trend %>% select(Year, kukan_u, kukan_l, type, scaled, Category)
     tag = data.frame(Category = unique(trend$Category), category2 = category_name)
     trend = merge(trend, tag, by = "Category")
 
@@ -95,8 +93,8 @@ plot_index = function(vast_index, DG, category_name, fig_output_dirname){
     nominal = c()
     for(i in 1:length(unique(DG2$spp))){
       data2 = DG2 %>% filter(nspp == i)
-      data2 = data2 %>% mutate(scaled = data2$mean/mean(data2$mean), type = "Nominal", kukan_u2 = NA, kukan_l2 = NA)
-      data2 = data2 %>% select(Year, kukan_u2, kukan_l2, type, scaled, nspp)
+      data2 = data2 %>% mutate(scaled = data2$mean/mean(data2$mean), type = "Nominal", kukan_u = NA, kukan_l = NA)
+      data2 = data2 %>% select(Year, kukan_u, kukan_l, type, scaled, nspp)
 
       nominal = rbind(nominal, data2)
     }
@@ -109,7 +107,7 @@ plot_index = function(vast_index, DG, category_name, fig_output_dirname){
     g = ggplot(trend, aes(x = Year, y = scaled, colour = type))
     pd = position_dodge(.3)
     p = geom_point(size = 4, aes(colour = type), position = pd)
-    e = geom_errorbar(aes(ymin = scaled - kukan_l2, ymax = scaled + kukan_u2), width = 0.3, size = .7, position = pd)
+    e = geom_errorbar(aes(ymin = scaled - kukan_l, ymax = scaled + kukan_u), width = 0.3, size = .7, position = pd)
     l = geom_line(aes(colour = type), size = 1.5, position = pd)
     f = facet_wrap(~ category2, ncol = 1)
     lb = labs(x = "Year", y = "Index", color = "Model")

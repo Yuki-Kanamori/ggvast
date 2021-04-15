@@ -41,7 +41,7 @@ map_dens = function(data, region, scale_name, ncol, shape, size, zoom_in_lon, zo
     if(length(unique(data$category)) == 1){
       p = geom_point(data = data, aes(x = lon, y = lat, colour = log_abundance), shape = shape, size = size)
       f = facet_wrap( ~ year, ncol = ncol)
-      c = scale_colour_gradientn(colours = c("black", "blue", "cyan", "green", "yellow", "orange", "red", "darkred"))
+      c =  
       fig = local_map+theme_bw()+th+p+f+c+labs(title = "", x = "Longitude", y = "Latitude", colour = scale_name)
       ggsave(filename = "map_dens.pdf", plot = fig, units = "in", width = 8.27, height = 11.69)
     }else{
