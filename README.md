@@ -71,8 +71,9 @@ install_github("Yuki-Kanamori/ggvast")
 * catchability covariateに漁具を入れた例（chiVAST）
 
 ### ggvast を使った論文・ドキュメント
+* Kanamori Y, Nishijima S, Okamura H, Yukami R, Watai M, Takasuka A (2021) Spatio-temporal model reduces species misidentification bias of spawning eggs in stock assessment of spotted mackerel in the western North Pacific. Fish Res 236:105825
 * Kanamori Y, Takasuka A, Nishijima S, Okamura H (2019) Climate change shifts the spawning ground northward and extends the spawning period of chub mackerel in the western North Pacific. MEPS 624:155–166
 https://doi.org/10.3354/meps13037
 * Kanamori Y, Takasuka A, Nishijima S, Ichinokawa M, Okamura H (2019) Standardizing abundance index for spawning stock biomass of chub mackerel in the Northwest Pacific. NPFC-2018-TWG CMSA02-WP03
 * 令和元 (2019) 年度ゴマサバ太平洋系群の資源評価    
-http://abchan.fra.go.jp/digests2019/index.html （アップ待ち）
+http://abchan.fra.go.jp/digests2019/index.html
