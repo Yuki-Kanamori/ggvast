@@ -26,7 +26,7 @@ plot_index = function(vast_index, DG, category_name, fig_output_dirname){
       data = vast_index %>% filter(ntype == i)
 
       data = data %>% mutate(scaled = Estimate_metric_tons/mean(Estimate_metric_tons))
-      conf = exp(qnorm(0.975)*sqrt(log(1+(data$SD_log)^2)))
+      conf = exp(qnorm(0.975)*sqrt(data$SD_log)^2)
       data = data %>% mutate(kukan_u = data$scaled*conf, kukan_l = data$scaled/conf)
 
       trend = rbind(trend, data)
@@ -76,7 +76,7 @@ plot_index = function(vast_index, DG, category_name, fig_output_dirname){
         data = vast_index %>% filter(ntype == i)
 
         data = data %>% mutate(scaled = Estimate_metric_tons/mean(Estimate_metric_tons))
-        conf = exp(qnorm(0.975)*sqrt(log(1+(data$SD_log)^2)))
+        conf = exp(qnorm(0.975)*sqrt(data$SD_log)^2)
         data = data %>% mutate(kukan_u = data$scaled*conf, kukan_l = data$scaled/conf)
 
         trend = rbind(trend, data)
