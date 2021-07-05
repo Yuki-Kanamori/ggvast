@@ -7,8 +7,6 @@
 #' @param ncol number of figures in line side by side. max is no. of "Category"
 #' @param shape shape of COG point
 #' @param size size of shape
-#' @param zoom_in_lon zoom in on the map if 1<, zoom out on the map if 1>, and 1 is the same size
-#' @param zoom_in_lat zoom in on the map if 1<, zoom out on the map if 1>, and 1 is the same size
 #' @param fig_output_dirname directory for output
 #' @importFrom dplyr distinct
 #' @importFrom dplyr select
@@ -23,7 +21,7 @@
 #' @export
 
 
-map_cog = function(data_type, category_name, region, ncol, shape, size, zoom_in_lon, zoom_in_lat, fig_output_dirname){
+map_cog = function(data_type, category_name, region, ncol, shape, size, fig_output_dirname){
   if(data_type == "VAST"){
     # make COG Table
     ### this code is from plot_range_index() in FishStatsUtils ###
@@ -103,7 +101,7 @@ map_cog = function(data_type, category_name, region, ncol, shape, size, zoom_in_
     map = ggplot() + coord_fixed() + xlab("Longitude") + ylab("Latitude")
     world_map = map_data("world")
     region2 = subset(world_map, world_map$region == region)
-    local_map = map + geom_polygon(data = region2, aes(x = long, y = lat, group = group), colour = "black", fill = "white") + coord_map(xlim = c(min(data$lon)-1*zoom_out_lon*(-1), max(data$lon)+1*zoom_out_lon*(-1)), ylim = c(min(data$lat)-1*zoom_out_lat*(-1), max(data$lat)+1*zoom_out_lat*(-1)))
+    local_map = map + geom_polygon(data = region2, aes(x = long, y = lat, group = group), colour = "black", fill = "white") + coord_map(xlim = c(min(data$lon)-1, max(data$lon)+1), ylim = c(min(data$lat)-1, max(data$lat)+1))
     th = theme(panel.grid.major = element_blank(),
                panel.grid.minor = element_blank(),
                axis.text.x = element_text(size = rel(1.5)),
@@ -132,7 +130,7 @@ map_cog = function(data_type, category_name, region, ncol, shape, size, zoom_in_
     map = ggplot() + coord_fixed() + xlab("Longitude") + ylab("Latitude")
     world_map = map_data("world")
     region2 = subset(world_map, world_map$region == region)
-    local_map = map + geom_polygon(data = region2, aes(x = long, y = lat, group = group), colour = "black", fill = "white") + coord_map(xlim = c(min(data$lon)-1*zoom_out_lon*(-1), max(data$lon)+1*zoom_out_lon*(-1)), ylim = c(min(data$lat)-1*zoom_out_lat*(-1), max(data$lat)+1*zoom_out_lat*(-1)))
+    local_map = map + geom_polygon(data = region2, aes(x = long, y = lat, group = group), colour = "black", fill = "white") + coord_map(xlim = c(min(data$lon)-1, max(data$lon)+1), ylim = c(min(data$lat)-1, max(data$lat)+1))
     th = theme(panel.grid.major = element_blank(),
                panel.grid.minor = element_blank(),
                axis.text.x = element_text(size = rel(1.5)),
