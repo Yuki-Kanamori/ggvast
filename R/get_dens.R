@@ -21,7 +21,8 @@ get_dens = function(category_name){
   year_set = DG %>% select(Year) %>% distinct(Year, .keep_all = T)
   latlon_list = DG %>% distinct(knot_i, Lon, Lat, .keep_all = T) %>% select(Lon, Lat, knot_i)
 
-  #estimated density
+  # get estimated density from Save.RData
+  # memo: add if() in reference to FishStatsUtils::plot_maps()
   est_d = c()
   if("D_xt" %in% names(Save$Report)){ #SpatialDeltaGLMM
     for(i in 1:n_c){
