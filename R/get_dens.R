@@ -41,9 +41,15 @@ get_dens = function(category_name){
       est_d = rbind(est_d, temp)
     }
   }
-  if ("D_gcy" %in% names(Save$Report)) {
+  if ("D_gcy" %in% names(Save$Report)) { # VAST Version 8.0.0 through 9.3.0
     for (i in 1:n_c) {
       temp = log(Save$Report$D_gcy[, i, ])
+      est_d = rbind(est_d, temp)
+    }
+  }
+  if ("D_gct" %in% names(Save$Report)) { # VAST Version >= 6.4.0
+    for (i in 1:n_c) {
+      temp = log(Save$Report$D_gct[, i, ])
       est_d = rbind(est_d, temp)
     }
   }
