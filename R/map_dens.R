@@ -18,6 +18,8 @@
 #'
 #' @export
 map_dens = function(data, region, scale_name, ncol, shape, size, width, height, fig_output_dirname){
+  options(warn = -1)
+
   setwd(dir = fig_output_dirname)
 
   #plot the data from VAST

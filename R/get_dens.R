@@ -12,6 +12,8 @@
 #' @export
 
 get_dens = function(category_name){
+  options(warn = -1)
+
   n_c = Save$TmbData$n_c #category (month)
   n_t = Save$TmbData$n_t #year
   n_x = Save$TmbData$n_x #knot
