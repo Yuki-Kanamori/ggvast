@@ -17,7 +17,7 @@
 #' @import magrittr
 #'
 #' @export
-map_dens = function(data, region, scale_name, ncol, shape, size, fig_output_dirname){
+map_dens = function(data, region, scale_name, ncol, shape, size, width, height, fig_output_dirname){
   setwd(dir = fig_output_dirname)
 
   #plot the data from VAST
@@ -41,7 +41,7 @@ map_dens = function(data, region, scale_name, ncol, shape, size, fig_output_dirn
       f = facet_wrap( ~ year, ncol = ncol)
       c = scale_colour_gradientn(colours = c("black", "blue", "cyan", "green", "yellow", "orange", "red", "darkred"))
       fig = local_map+theme_bw()+th+p+f+c+labs(title = "", x = "Longitude", y = "Latitude", colour = scale_name)
-      ggsave(filename = "map_dens.pdf", plot = fig, units = "in", width = 8.27, height = 11.69)
+      ggsave(filename = "map_dens.pdf", plot = fig, units = "in", width = width, height = height)
     }else{
       #multi-species
       for(i in 1:length(unique(data$category))){
@@ -50,7 +50,7 @@ map_dens = function(data, region, scale_name, ncol, shape, size, fig_output_dirn
         f = facet_wrap( ~ year, ncol = ncol)
         c = scale_colour_gradientn(colours = c("black", "blue", "cyan", "green", "yellow", "orange", "red", "darkred"))
         fig = local_map+theme_bw()+th+p+f+c+labs(x = "Longitude", y = "Latitude", colour = scale_name)
-        ggsave(filename = paste0("map_dens_", unique(data2$category_name), ".pdf"), plot = fig, units = "in", width = 8.27, height = 11.69)
+        ggsave(filename = paste0("map_dens_", unique(data2$category_name), ".pdf"), plot = fig, units = "in", width = width, height = height)
       }
     }
   }
@@ -79,7 +79,7 @@ map_dens = function(data, region, scale_name, ncol, shape, size, fig_output_dirn
       f = facet_wrap( ~ Year, ncol = ncol)
       c = scale_colour_gradientn(colours = c("black", "blue", "cyan", "green", "yellow", "orange", "red", "darkred"))
       fig = local_map+theme_bw()+th+p+f+c+labs(title = "", x = "Longitude", y = "Latitude", colour = scale_name)
-      ggsave(filename = "map_dens_nominal.pdf", plot = fig, units = "in", width = 8.27, height = 11.69)
+      ggsave(filename = "map_dens_nominal.pdf", plot = fig, units = "in", width = width, height = height)
     }
 
     #multi-species
@@ -91,7 +91,7 @@ map_dens = function(data, region, scale_name, ncol, shape, size, fig_output_dirn
         f = facet_wrap( ~ Year, ncol = ncol)
         c = scale_colour_gradientn(colours = c("black", "blue", "cyan", "green", "yellow", "orange", "red", "darkred"))
         fig = local_map+theme_bw()+th+p+f+c+labs(title = "", x = "Longitude", y = "Latitude", colour = scale_name)
-        ggsave(filename = paste0("map_dens_nominal_", unique(data2$spp), ".pdf"), plot = fig, units = "in", width = 8.27, height = 11.69)
+        ggsave(filename = paste0("map_dens_nominal_", unique(data2$spp), ".pdf"), plot = fig, units = "in", width = width, height = height)
       }
     }
   }
